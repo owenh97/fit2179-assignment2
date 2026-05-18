@@ -22,7 +22,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/OwenHee/fit2179-assignment2/main/data/Billionaires%20Statistics%20Dataset.csv"
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/6_advanced_examples/data/Billionaire.csv"
       },
       "transform": [
         {
