@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Anatomy of Wealth</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+  
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f7f9fa;
+      color: #2c3e50;
+      padding: 20px;
+    }
+    .header-block {
+      text-align: center;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #e1e8ed;
+    }
+    .section-container {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      border: 1px solid #e1e8ed;
+    }
+    .chart-box {
+      width: 100%;
+      min-height: 420px;
+      background-color: #fafbfb;
+      border: 1px dashed #ccd6dd;
+      border-radius: 6px;
+    }
+    .narrative-text {
+      padding: 15px 10px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-block">
+    <h1>The Anatomy of Wealth: How National Ecosystems Shape Billionaires</h1>
+    <p>Author: Owen Hee | Data: 2023 Global Billionaire Statistics</p>
+  </header>
+
+  <section class="section-container">
+    <h2>The Local Duel: Mapping the Wealth Profiles of Malaysia and Australia</h2>
+    <div class="pure-g">
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div class="chart-box" id="symbol_map"></div>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div class="chart-box" id="grouped_bar"></div>
+      </div>
+    </div>
+    <div class="pure-g">
+      <div class="pure-u-1 narrative-text">
+        <p>Australia's billionaire landscape is vast, coastal, and dominated by self-made entrepreneurs in heavy industrial mining and modern software technology. In contrast, Malaysia's billionaire presence is tighter, heavily centered around diversified, inherited family conglomerate structures, and grounded in property and finance sectors.</p>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    vegaEmbed('#symbol_map', 'js/map_local_symbol.vg.json').catch(console.error);
+  </script>
+
+</body>
+</html>
