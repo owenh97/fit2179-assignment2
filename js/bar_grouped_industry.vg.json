@@ -8,17 +8,17 @@
   },
   "transform": [
     {
-      "filter": "datum.countryOfCitizenship == 'Malaysia' || datum.countryOfCitizenship == 'Australia'"
+      "filter": "datum.Country == 'Malaysia' || datum.Country == 'Australia'"
     },
     {
       "aggregate": [{"op": "count", "as": "billionaire_count"}],
-      "groupby": ["countryOfCitizenship", "category"]
+      "groupby": ["Country", "Industry"]
     }
   ],
   "mark": {"type": "bar", "cornerRadiusTopLeft": 4, "cornerRadiusTopRight": 4},
   "encoding": {
     "x": {
-      "field": "category",
+      "field": "Industry",
       "type": "nominal",
       "title": "Industry Category",
       "axis": {"labelAngle": -45}
@@ -29,11 +29,11 @@
       "title": "Number of Billionaires"
     },
     "xOffset": {
-      "field": "countryOfCitizenship",
+      "field": "Country",
       "title": "Country"
     },
     "color": {
-      "field": "countryOfCitizenship",
+      "field": "Country",
       "type": "nominal",
       "title": "Country",
       "scale": {
@@ -42,8 +42,8 @@
       }
     },
     "tooltip": [
-      {"field": "countryOfCitizenship", "type": "nominal", "title": "Country"},
-      {"field": "category", "type": "nominal", "title": "Industry"},
+      {"field": "Country", "type": "nominal", "title": "Country"},
+      {"field": "Industry", "type": "nominal", "title": "Industry"},
       {"field": "billionaire_count", "type": "quantitative", "title": "Total Billionaires"}
     ]
   }
