@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 380,
+  "title": "Gender Distribution: Global Ecosystems",
+  "data": {
+    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/6_advanced_examples/data/Billionaires%20Statistics%20Dataset.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.gender == 'M' || datum.gender == 'F'"
+    },
+    {
+      "aggregate": [{"op": "count", "as": "gender_count"}],
+      "groupby": ["gender"]
+    }
+  ],
+  "mark": {"type": "arc", "innerRadius": 70, "stroke": "#fff"},
+  "encoding": {
+    "theta": {"field": "gender_count", "type": "quantitative"},
+    "color": {
+      "field": "gender",
+      "type": "nominal",
+      "title": "Gender",
+      "scale": {
+        "domain": ["M", "F"],
+        "range": ["#2b5c8f", "#e06666"]
+      }
+    },
+    "tooltip": [
+      {"field": "gender", "type": "nominal", "title": "Gender"},
+      {"field": "gender_count", "type": "quantitative", "title": "Total Count"}
+    ]
+  }
+}
