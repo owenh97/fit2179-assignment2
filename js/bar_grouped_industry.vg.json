@@ -4,7 +4,7 @@
   "height": 400,
   "title": "Billionaire Industry Concentration: Australia vs Malaysia",
   "data": {
-    "url": "https://raw.githubusercontent.com/OwenHee/fit2179-assignment2/main/data/Billionaires%20Statistics%20Dataset.csv"
+    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/6_advanced_examples/data/Billionaires%20Statistics%20Dataset.csv"
   },
   "transform": [
     {
@@ -15,7 +15,7 @@
       "groupby": ["countryOfCitizenship", "category"]
     }
   ],
-  "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+  "mark": {"type": "bar", "cornerRadiusTopLeft": 4, "cornerRadiusTopRight": 4},
   "encoding": {
     "x": {
       "field": "category",
