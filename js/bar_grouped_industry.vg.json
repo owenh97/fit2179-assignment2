@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": 400,
+  "title": "Billionaire Industry Concentration: Australia vs Malaysia",
+  "data": {
+    "url": "https://raw.githubusercontent.com/OwenHee/fit2179-assignment2/main/data/Billionaires%20Statistics%20Dataset.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.countryOfCitizenship == 'Malaysia' || datum.countryOfCitizenship == 'Australia'"
+    },
+    {
+      "aggregate": [{"op": "count", "as": "billionaire_count"}],
+      "groupby": ["countryOfCitizenship", "category"]
+    }
+  ],
+  "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+  "encoding": {
+    "x": {
+      "field": "category",
+      "type": "nominal",
+      "title": "Industry Category",
+      "axis": {"labelAngle": -45}
+    },
+    "y": {
+      "field": "billionaire_count",
+      "type": "quantitative",
+      "title": "Number of Billionaires"
+    },
+    "xOffset": {
+      "field": "countryOfCitizenship",
+      "title": "Country"
+    },
+    "color": {
+      "field": "countryOfCitizenship",
+      "type": "nominal",
+      "title": "Country",
+      "scale": {
+        "domain": ["Australia", "Malaysia"],
+        "range": ["#4682b4", "#008080"]
+      }
+    },
+    "tooltip": [
+      {"field": "countryOfCitizenship", "type": "nominal", "title": "Country"},
+      {"field": "category", "type": "nominal", "title": "Industry"},
+      {"field": "billionaire_count", "type": "quantitative", "title": "Total Billionaires"}
+    ]
+  }
+}
