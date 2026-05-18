@@ -4,7 +4,7 @@
   "height": 400,
   "title": "Billionaire Industry Concentration: Australia vs Malaysia",
   "data": {
-    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/6_advanced_examples/data/Billionaires%20Statistics%20Dataset.csv"
+    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/6_advanced_examples/data/Billionaire.csv"
   },
   "transform": [
     {
