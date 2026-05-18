@@ -2,22 +2,46 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
   "height": 400,
-  "title": "Wealth Density & Outliers across Key Sectors",
+  "title": "Wealth Shifts & Trajectories (2023 vs. 2025 Validation Cohort)",
   "data": {
-    "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/6_advanced_examples/data/Billionaires%20Statistics%20Dataset.csv"
+    "values": [
+      {"Name": "Robert Kuok", "Year": "2023", "Worth": 11.8, "Country": "Malaysia"},
+      {"Name": "Robert Kuok", "Year": "2025", "Worth": 12.1, "Country": "Malaysia"},
+      {"Name": "Ananda Krishnan", "Year": "2023", "Worth": 4.7, "Country": "Malaysia"},
+      {"Name": "Ananda Krishnan", "Year": "2025", "Worth": 5.1, "Country": "Malaysia"},
+      {"Name": "Gina Rinehart", "Year": "2023", "Worth": 27.0, "Country": "Australia"},
+      {"Name": "Gina Rinehart", "Year": "2025", "Worth": 29.3, "Country": "Australia"},
+      {"Name": "Andrew Forrest", "Year": "2023", "Worth": 21.7, "Country": "Australia"},
+      {"Name": "Andrew Forrest", "Year": "2025", "Worth": 19.5, "Country": "Australia"}
+    ]
   },
-  "transform": [
-    {
-      "filter": "datum.category == 'Technology' || datum.category == 'Metals & Mining' || datum.category == 'Finance & Investments'"
-    }
-  ],
-  "layer": [
-    {
-      "mark": {"type": "boxplot", "extent": "min-max"},
-      "encoding": {
-        "y": {"field": "category", "type": "nominal", "title": "Industry Sector"},
-        "x": {"field": "finalWorth", "type": "quantitative", "title": "Net Worth ($ Millions)"}
+  "mark": {"type": "line", "point": {"size": 60, "filled": true}},
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Dataset Timeline Threshold",
+      "scale": {"padding": 0.4}
+    },
+    "y": {
+      "field": "Worth",
+      "type": "quantitative",
+      "title": "Net Worth ($ Billions)"
+    },
+    "color": {
+      "field": "Country",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Australia", "Malaysia"],
+        "range": ["#4682b4", "#008080"]
       }
-    }
-  ]
+    },
+    "detail": {"field": "Name"},
+    "tooltip": [
+      {"field": "Name", "type": "nominal", "title": "Billionaire"},
+      {"field": "Country", "type": "nominal", "title": "Country Location"},
+      {"field": "Worth", "type": "quantitative", "title": "Valuation ($B)"},
+      {"field": "Year", "type": "ordinal", "title": "Timeline Year"}
+    ]
+  }
 }
