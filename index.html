@@ -13,66 +13,179 @@
   
   <style>
     body {
-      font-family: sans-serif;
-      background-color: #f7f9fa;
-      color: #2c3e50;
-      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f4f6f8;
+      color: #1a2a3a;
+      margin: 0;
+      padding: 30px;
     }
-    .header-block {
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    header {
       text-align: center;
-      padding: 20px;
+      padding: 40px 20px;
       background: white;
-      border-radius: 8px;
-      margin-bottom: 20px;
+      border-radius: 12px;
+      margin-bottom: 35px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       border: 1px solid #e1e8ed;
     }
-    .section-container {
+    header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.4rem;
+      color: #002b49;
+    }
+    header p {
+      margin: 0;
+      color: #546e7a;
+      font-size: 1.1rem;
+    }
+    .segment-section {
       background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 35px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       border: 1px solid #e1e8ed;
+    }
+    .segment-section h2 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      color: #002b49;
+      border-bottom: 2px solid #eef2f5;
+      padding-bottom: 12px;
+      margin-bottom: 25px;
     }
     .chart-box {
       width: 100%;
-      min-height: 420px;
+      min-height: 450px;
       background-color: #fafbfb;
-      border: 1px dashed #ccd6dd;
-      border-radius: 6px;
+      border: 1px dashed #cfd8dc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      padding: 10px;
     }
-    .narrative-text {
-      padding: 15px 10px;
-      line-height: 1.6;
+    .narrative-block {
+      background-color: #f8fafd;
+      border-left: 4px solid #008080;
+      padding: 20px;
+      margin-top: 25px;
+      border-radius: 0 8px 8px 0;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    /* Fixing layout margins between side-by-side elements */
+    .pad-right { padding-right: 15px; }
+    .pad-left { padding-left: 15px; }
+    @media (max-width: 768px) {
+      .pad-right { padding-right: 0; }
+      .pad-left { padding-left: 0; margin-top: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <header class="header-block">
+<div class="main-container">
+
+  <header>
     <h1>The Anatomy of Wealth: How National Ecosystems Shape Billionaires</h1>
-    <p>Author: Owen Hee | Data: 2023 Global Billionaire Statistics</p>
+    <p>Author: Owen Hee | Date: May 2026 | Data Sources: Global Billionaire Statistics & Forbes</p>
   </header>
 
-  <section class="section-container">
-    <h2>The Local Duel: Mapping the Wealth Profiles of Malaysia and Australia</h2>
+  <section class="segment-section">
+    <h2>Segment 1: The Local Duel — Malaysia vs. Australia Profiles</h2>
     <div class="pure-g">
       <div class="pure-u-1 pure-u-md-1-2">
-        <div class="chart-box" id="symbol_map"></div>
+        <div class="pad-right">
+          <div class="chart-box" id="symbol_map"></div>
+        </div>
       </div>
       <div class="pure-u-1 pure-u-md-1-2">
-        <div class="chart-box" id="grouped_bar"></div>
+        <div class="pad-left">
+          <div class="chart-box" id="grouped_bar"></div>
+        </div>
       </div>
     </div>
-    <div class="pure-g">
-      <div class="pure-u-1 narrative-text">
-        <p>Australia's billionaire landscape is vast, coastal, and dominated by self-made entrepreneurs in heavy industrial mining and modern software technology. In contrast, Malaysia's billionaire presence is tighter, heavily centered around diversified, inherited family conglomerate structures, and grounded in property and finance sectors.</p>
-      </div>
+    <div class="narrative-block">
+      <strong>Analytical Storytelling:</strong> Australia's billionaire landscape is vast, coastal, and dominated by self-made entrepreneurs in heavy industrial mining and modern software technology. In contrast, Malaysia's billionaire presence is tighter, heavily centered around diversified, inherited family conglomerate structures, and grounded in structural property and financial channels.
     </div>
   </section>
 
+  <section class="segment-section">
+    <h2>Segment 2: Macroeconomics — Tax Rates, Higher Education & Demographics</h2>
+    <div class="pure-g">
+      <div class="pure-u-1 pure-u-md-1-3">
+        <div style="padding-right: 10px;">
+          <div class="chart-box" id="macro_scatter"></div>
+        </div>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-3">
+        <div style="padding-left: 10px; padding-right: 10px;">
+          <div class="chart-box" id="macro_bubble"></div>
+        </div>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-3">
+        <div style="padding-left: 10px;">
+          <div class="chart-box" id="macro_donut"></div>
+        </div>
+      </div>
+    </div>
+    <div class="narrative-block">
+      <strong>Analytical Storytelling:</strong> Cross-examining national indicators shows that billionaire clusters thrive inside robust economic environments with high levels of tertiary education access and structured infrastructure, breaking the misconception that wealth generation is purely limited by baseline national tax rate indices.
+    </div>
+  </section>
+
+  <section class="segment-section">
+    <h2>Segment 3: The Wealth Pipeline — Flows, Trajectories & Outliers</h2>
+    <div class="pure-g">
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div class="pad-right">
+          <div class="chart-box" id="pipeline_sankey"></div>
+        </div>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2">
+        <div class="pad-left">
+          <div class="chart-box" id="pipeline_outliers"></div>
+        </div>
+      </div>
+    </div>
+    <div class="narrative-block">
+      <strong>Analytical Storytelling:</strong> Mapping individual industry sectors isolates structural wealth outliers across generational thresholds, charting the explicit paths through which industrial capital cascades across global resource, real estate, and digital markets.
+    </div>
+  </section>
+
+  <section class="segment-section">
+    <h2>Segment 4: The Global Stage — National GDP Concentration</h2>
+    <div class="pure-g">
+      <div class="pure-u-1">
+        <div class="chart-box" id="global_map"></div>
+      </div>
+    </div>
+    <div class="narrative-block">
+      <strong>Analytical Storytelling:</strong> Evaluating aggregate sovereign indicators reveals the global concentration of billionaire fortunes when normalized against total national GDP output, capturing variations between highly diversified market economies and resource-dependent networks.
+    </div>
+  </section>
+
+</div>
+
   <script type="text/javascript">
+    // Row 1
     vegaEmbed('#symbol_map', 'js/map_local_symbol.vg.json').catch(console.error);
     vegaEmbed('#grouped_bar', 'js/bar_grouped_industry.vg.json').catch(console.error);
+    
+    // Row 2
+    vegaEmbed('#macro_scatter', 'js/macro_scatter_tax.vg.json').catch(console.error);
+    vegaEmbed('#macro_bubble', 'js/macro_bubble_edu.vg.json').catch(console.error);
+    vegaEmbed('#macro_donut', 'js/macro_donut_gender.vg.json').catch(console.error);
+    
+    // Row 3
+    vegaEmbed('#pipeline_sankey', 'js/pipeline_sankey.vg.json').catch(console.error);
+    vegaEmbed('#pipeline_outliers', 'js/pipeline_outliers.vg.json').catch(console.error);
+    
+    // Row 4
+    vegaEmbed('#global_map', 'js/global_map.vg.json').catch(console.error);
   </script>
 
 </body>
