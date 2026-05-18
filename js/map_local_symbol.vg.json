@@ -26,33 +26,29 @@
       },
       "transform": [
         {
-          "filter": "datum.countryOfCitizenship == 'Malaysia' || datum.countryOfCitizenship == 'Australia'"
+          "filter": "datum.Country == 'Malaysia' || datum.Country == 'Australia'"
         }
       ],
       "mark": {"type": "circle", "opacity": 0.75, "stroke": "#2c3e50", "strokeWidth": 1},
       "encoding": {
-        "longitude": {"field": "longitude_country", "type": "quantitative"},
-        "latitude": {"field": "latitude_country", "type": "quantitative"},
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
         "size": {
-          "field": "finalWorth",
+          "field": "Worth",
           "type": "quantitative",
-          "title": "Net Worth ($ Millions)",
+          "title": "Net Worth ($ Billions)",
           "scale": {"range": [50, 800]}
         },
         "color": {
-          "field": "selfMade",
+          "field": "Source",
           "type": "nominal",
-          "title": "Self-Made Status",
-          "scale": {
-            "domain": [true, false],
-            "range": ["#008080", "#ff7f50"]
-          }
+          "title": "Wealth Source"
         },
         "tooltip": [
-          {"field": "personName", "type": "nominal", "title": "Name"},
-          {"field": "countryOfCitizenship", "type": "nominal", "title": "Country"},
-          {"field": "finalWorth", "type": "quantitative", "title": "Net Worth ($M)"},
-          {"field": "category", "type": "nominal", "title": "Industry"}
+          {"field": "Name", "type": "nominal", "title": "Name"},
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {"field": "Worth", "type": "quantitative", "title": "Net Worth ($B)"},
+          {"field": "Industry", "type": "nominal", "title": "Industry"}
         ]
       }
     }
