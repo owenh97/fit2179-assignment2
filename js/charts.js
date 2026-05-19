@@ -329,3 +329,197 @@ const heatmapSpec = {
   }
 };
 vegaEmbed('#heatmap_chart', heatmapSpec, {actions: false});
+
+// =====================
+// CHART 7: Interactive Top Billionaires — Malaysia vs Australia
+// =====================
+const topSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Top 10 Billionaires: Malaysia vs Australia",
+    "subtitle": "Source: Forbes Billionaire List 2025",
+    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
+  },
+  "width": 450, "height": 300,
+  "data": {"url": "data/top_billionaires.csv"},
+  "params": [{
+    "name": "countrySelect",
+    "select": {"type": "point", "fields": ["country"]},
+    "bind": "legend"
+  }],
+  "mark": {"type": "bar", "tooltip": true},
+  "encoding": {
+    "y": {
+      "field": "name", "type": "nominal",
+      "sort": "-x", "title": null,
+      "axis": {"labelFontSize": 11}
+    },
+    "x": {
+      "field": "wealth", "type": "quantitative",
+      "title": "Wealth (USD Billions)"
+    },
+    "color": {
+      "field": "country", "type": "nominal",
+      "scale": {"domain": ["Malaysia","Australia"], "range": ["#ff7f0e","#1f77b4"]},
+      "title": "Country"
+    },
+    "opacity": {
+      "condition": {"param": "countrySelect", "value": 1},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "name", "title": "Name"},
+      {"field": "country", "title": "Country"},
+      {"field": "wealth", "title": "Wealth (USD Billions)"},
+      {"field": "industry", "title": "Industry"}
+    ]
+  }
+};
+
+vegaEmbed('#top_chart', topSpec, {actions: false});
+
+// =====================
+// CHART 8: Education vs Billionaires per Million — Scatter
+// =====================
+const factorsSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Does Education Produce Billionaires?",
+    "subtitle": "X = Tertiary education enrollment (%) | Y = Billionaires per million people | Source: Billionaires Statistics Dataset 2023",
+    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
+  },
+  "width": 480, "height": 320,
+  "data": {"url": "data/country_factors.csv"},
+  "layer": [
+    {
+      "mark": {"type": "circle", "size": 120, "opacity": 0.8, "tooltip": true},
+      "encoding": {
+        "x": {
+          "field": "education", "type": "quantitative",
+          "title": "Tertiary Education Enrollment (%)"
+        },
+        "y": {
+          "field": "per_million", "type": "quantitative",
+          "title": "Billionaires per Million People"
+        },
+        "color": {
+          "field": "country", "type": "nominal",
+          "scale": {
+            "domain": ["Malaysia","Australia","Singapore","United States","China","Germany","United Kingdom","India","France","Japan"],
+            "range": ["#ff7f0e","#1f77b4","#2ca02c","#d62728","#8c564b","#9467bd","#17becf","#e377c2","#bcbd22","#7f7f7f"]
+          }
+        },
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "education", "title": "Education Enrollment (%)"},
+          {"field": "per_million", "title": "Billionaires per Million"},
+          {"field": "tax_rate", "title": "Tax Rate (%)"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": -12, "fontSize": 11, "fontWeight": "bold"},
+      "encoding": {
+        "x": {"field": "education", "type": "quantitative"},
+        "y": {"field": "per_million", "type": "quantitative"},
+        "text": {"field": "country", "type": "nominal"},
+        "color": {"value": "#333"}
+      }
+    }
+  ]
+};
+
+vegaEmbed('#factors_chart', factorsSpec, {actions: false});
+
+// =====================
+// CHART 9: Wealth Distribution — Grouped Bar with Median Rule
+// =====================
+const wealthDistSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How Wealthy Are the Billionaires?",
+    "subtitle": "Distribution by wealth bracket | Source: Billionaires Statistics Dataset 2023",
+    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
+  },
+  "width": 450, "height": 280,
+  "data": {"url": "data/wealth_distribution.csv"},
+  "mark": {"type": "bar", "tooltip": true},
+  "encoding": {
+    "x": {
+      "field": "wealth_bracket", "type": "ordinal",
+      "title": "Wealth Bracket",
+      "sort": ["$1-2B","$2-5B","$5-10B","$10-20B","$20-50B","$50B+"],
+      "axis": {"labelAngle": -20}
+    },
+    "y": {
+      "field": "count", "type": "quantitative",
+      "title": "Number of Billionaires"
+    },
+    "color": {
+      "field": "country", "type": "nominal",
+      "scale": {"domain": ["Malaysia","Australia"], "range": ["#ff7f0e","#1f77b4"]},
+      "title": "Country"
+    },
+    "xOffset": {"field": "country", "type": "nominal"},
+    "tooltip": [
+      {"field": "country", "title": "Country"},
+      {"field": "wealth_bracket", "title": "Wealth Bracket"},
+      {"field": "count", "title": "Count"}
+    ]
+  }
+};
+
+vegaEmbed('#wealth_dist_chart', wealthDistSpec, {actions: false});
+
+// =====================
+// CHART 10: Tax Rate vs Billionaires per Million
+// =====================
+const taxSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Do Lower Taxes Produce More Billionaires?",
+    "subtitle": "X = Total tax rate (%) | Y = Billionaires per million people | Source: Billionaires Statistics Dataset 2023",
+    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
+  },
+  "width": 480, "height": 320,
+  "data": {"url": "data/country_factors.csv"},
+  "layer": [
+    {
+      "mark": {"type": "circle", "size": 120, "opacity": 0.8, "tooltip": true},
+      "encoding": {
+        "x": {
+          "field": "tax_rate", "type": "quantitative",
+          "title": "Total Tax Rate (%)"
+        },
+        "y": {
+          "field": "per_million", "type": "quantitative",
+          "title": "Billionaires per Million People"
+        },
+        "color": {
+          "field": "country", "type": "nominal",
+          "scale": {
+            "domain": ["Malaysia","Australia","Singapore","United States","China","Germany","United Kingdom","India","France","Japan"],
+            "range": ["#ff7f0e","#1f77b4","#2ca02c","#d62728","#8c564b","#9467bd","#17becf","#e377c2","#bcbd22","#7f7f7f"]
+          }
+        },
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "tax_rate", "title": "Tax Rate (%)"},
+          {"field": "per_million", "title": "Billionaires per Million"},
+          {"field": "education", "title": "Education Enrollment (%)"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": -12, "fontSize": 11, "fontWeight": "bold"},
+      "encoding": {
+        "x": {"field": "tax_rate", "type": "quantitative"},
+        "y": {"field": "per_million", "type": "quantitative"},
+        "text": {"field": "country", "type": "nominal"},
+        "color": {"value": "#333"}
+      }
+    }
+  ]
+};
+
+vegaEmbed('#tax_chart', taxSpec, {actions: false});
