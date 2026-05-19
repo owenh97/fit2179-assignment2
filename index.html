@@ -60,7 +60,7 @@
       border-top: 1px solid #ddd;
       margin-top: 40px;
     .pure-g {
-      align-items: flex-start;
+    align-items: flex-start;
     }
     .narrative {
       padding: 10px 30px 10px 0;
@@ -103,36 +103,39 @@
     </div>
   </div>
 
-    <!-- SECTION 2: Industry -->
+  <!-- SECTION 2: Industry -->
   <div class="section">
     <h2>Which Industries Produce Billionaires?</h2>
+  
+    <!-- Row 1: Narrative left, Bar chart right -->
     <div class="pure-g">
-      <div class="pure-u-2-3">
-        <div class="chart-container">
-          <div id="industry_chart"></div>
-        </div>
-      </div>
       <div class="pure-u-1-3">
         <div class="narrative">
           <p>Australia's wealth is rooted in the ground — Metals & Mining leads with 10 billionaires, reflecting the country's resource-rich economy.</p>
           <p>Malaysia tells a different story: Finance & Investments ties with Real Estate at 5 each, reflecting a banking and property-driven economy. Notably, Malaysia has zero technology billionaires.</p>
         </div>
       </div>
+      <div class="pure-u-2-3">
+        <div class="chart-container">
+          <div id="industry_chart"></div>
+        </div>
+      </div>
     </div>
   
-    <!-- HEATMAP ROW -->
-    <div class="pure-g" style="margin-top: 30px; align-items: flex-start;">
-      <div class="pure-u-1-3">
+    <!-- Row 2: Heatmap left, Narrative right -->
+    <div class="pure-g" style="margin-top: 30px;">
+      <div class="pure-u-2-3">
         <div class="chart-container">
           <div id="heatmap_chart"></div>
         </div>
       </div>
-      <div class="pure-u-2-3" style="padding: 20px 0 0 20px;">
-        <p style="font-size: 1em; line-height: 1.7; color: #444;">
-          The heatmap shows the same data from a different angle — darker cells indicate more billionaires in that industry. Australia dominates across most industries while Malaysia's billionaire base is concentrated in just a few sectors.
-        </p>
+      <div class="pure-u-1-3">
+        <div class="narrative">
+          <p>The heatmap shows the same data from a different angle — darker cells indicate more billionaires in that industry. Australia dominates across most industries while Malaysia's billionaire base is concentrated in just a few sectors.</p>
+        </div>
       </div>
     </div>
+  
   </div>
 
   <!-- SECTION 3: GDP Bubble -->
