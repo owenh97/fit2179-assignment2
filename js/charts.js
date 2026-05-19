@@ -316,7 +316,7 @@ const donutSpec = {
 };
 
 // =====================
-// CHART 5: Heatmap wealth by indusry x country
+// CHART 6: Heatmap wealth by indusry x country
 // =====================
 vegaEmbed('#donut_chart', donutSpec, {actions: false});
 
