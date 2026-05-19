@@ -5,7 +5,7 @@ const mapSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Global Distribution of Billionaires",
-    "subtitle": "Circle size = number of billionaires | Colour intensity = total wealth | Source: Billionaires Statistics Dataset 2023",
+    "subtitle": "Circle size = number of billionaires | Source: Billionaires Statistics Dataset 2023",
     "fontSize": 16,
     "subtitleFontSize": 11,
     "anchor": "start"
@@ -117,7 +117,52 @@ vegaEmbed('#industry_chart', industrySpec, {actions: false});
 
 
 // =====================
-// CHART 3: Bubble Chart — GDP vs Billionaire Count
+// CHART 3: Heatmap — Industry by Country
+// =====================
+const heatmapSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Industry Wealth Heatmap",
+    "subtitle": "Source: Forbes Billionaire List 2025",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "anchor": "start"
+  },
+  "width": 200,
+  "height": 300,
+  "data": {"url": "data/industry_data.csv"},
+  "mark": {"type": "rect", "tooltip": true},
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "nominal",
+      "title": null
+    },
+    "y": {
+      "field": "industry",
+      "type": "nominal",
+      "title": null,
+      "sort": "-x"
+    },
+    "color": {
+      "field": "count",
+      "type": "quantitative",
+      "title": "Billionaires",
+      "scale": {"scheme": "oranges"}
+    },
+    "tooltip": [
+      {"field": "country", "title": "Country"},
+      {"field": "industry", "title": "Industry"},
+      {"field": "count", "title": "Count"}
+    ]
+  }
+};
+
+vegaEmbed('#heatmap_chart', heatmapSpec, {actions: false});
+
+
+// =====================
+// CHART 4: Bubble Chart — GDP vs Billionaire Count
 // =====================
 const bubbleSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -146,7 +191,7 @@ const bubbleSpec = {
           "field": "billionaire_count",
           "type": "quantitative",
           "title": "Number of Billionaires",
-          "scale": {"type": "log"}
+          "scale": {"type": "log"},
           "axis": {"grid": false}
         },
         "size": {
@@ -190,7 +235,7 @@ vegaEmbed('#bubble_chart', bubbleSpec, {actions: false});
 
 
 // =====================
-// CHART 4: Age Dot/Strip Plot
+// CHART 5: Age Dot/Strip Plot
 // =====================
 const ageSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
@@ -239,7 +284,7 @@ vegaEmbed('#age_chart', ageSpec, {actions: false});
 
 
 // =====================
-// CHART 5: Small Multiple Donuts — Gender & Self-Made
+// CHART 6: Small Multiple Donuts — Gender & Self-Made
 // =====================
 const colorScale = {
   "domain": ["Male","Female","Self-Made","Inherited"],
@@ -251,7 +296,9 @@ const donutSpec = {
   "title": {
     "text": "Gender & Self-Made Status: Malaysia vs Australia",
     "subtitle": "Gender: Forbes 2025 | Self-Made: Billionaires Statistics Dataset 2023",
-    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "anchor": "start"
   },
   "concat": [
     {
@@ -261,7 +308,11 @@ const donutSpec = {
       "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
       "encoding": {
         "theta": {"field": "value", "type": "quantitative"},
-        "color": {"field": "label", "type": "nominal", "scale": colorScale, "legend": {"title": "Category"}},
+        "color": {
+          "field": "label", "type": "nominal",
+          "scale": colorScale,
+          "legend": {"title": "Category"}
+        },
         "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
       }
     },
@@ -272,7 +323,11 @@ const donutSpec = {
       "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
       "encoding": {
         "theta": {"field": "value", "type": "quantitative"},
-        "color": {"field": "label", "type": "nominal", "scale": colorScale, "legend": null},
+        "color": {
+          "field": "label", "type": "nominal",
+          "scale": colorScale,
+          "legend": null
+        },
         "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
       }
     },
@@ -283,7 +338,11 @@ const donutSpec = {
       "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
       "encoding": {
         "theta": {"field": "value", "type": "quantitative"},
-        "color": {"field": "label", "type": "nominal", "scale": colorScale, "legend": null},
+        "color": {
+          "field": "label", "type": "nominal",
+          "scale": colorScale,
+          "legend": null
+        },
         "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
       }
     },
@@ -294,7 +353,11 @@ const donutSpec = {
       "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
       "encoding": {
         "theta": {"field": "value", "type": "quantitative"},
-        "color": {"field": "label", "type": "nominal", "scale": colorScale, "legend": null},
+        "color": {
+          "field": "label", "type": "nominal",
+          "scale": colorScale,
+          "legend": null
+        },
         "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
       }
     }
@@ -304,107 +367,39 @@ const donutSpec = {
 
 vegaEmbed('#donut_chart', donutSpec, {actions: false});
 
-// =====================
-// CHART 6: Heatmap wealth by indusry x country
-// =====================
-
-const heatmapSpec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Industry Wealth Heatmap", "anchor": "start", "fontSize": 16},
-  "width": 200, "height": 300,
-  "data": {"url": "data/industry_data.csv"},
-  "mark": {"type": "rect", "tooltip": true},
-  "encoding": {
-    "x": {"field": "country", "type": "nominal", "title": null},
-    "y": {"field": "industry", "type": "nominal", "title": null, "sort": "-x"},
-    "color": {
-      "field": "count", "type": "quantitative",
-      "title": "Billionaires",
-      "scale": {"scheme": "oranges"}
-    },
-    "tooltip": [
-      {"field": "country", "title": "Country"},
-      {"field": "industry", "title": "Industry"},
-      {"field": "count", "title": "Count"}
-    ]
-  }
-};
-vegaEmbed('#heatmap_chart', heatmapSpec, {actions: false});
 
 // =====================
-// CHART 7: Interactive Top Billionaires — Malaysia vs Australia
-// =====================
-const topSpec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Top 10 Billionaires: Malaysia vs Australia",
-    "subtitle": "Source: Forbes Billionaire List 2025",
-    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
-  },
-  "width": 450, "height": 300,
-  "data": {"url": "data/top_billionaires.csv"},
-  "params": [{
-    "name": "countrySelect",
-    "select": {"type": "point", "fields": ["country"]},
-    "bind": "legend"
-  }],
-  "mark": {"type": "bar", "tooltip": true},
-  "encoding": {
-    "y": {
-      "field": "name", "type": "nominal",
-      "sort": "-x", "title": null,
-      "axis": {"labelFontSize": 11}
-    },
-    "x": {
-      "field": "wealth", "type": "quantitative",
-      "title": "Wealth (USD Billions)"
-    },
-    "color": {
-      "field": "country", "type": "nominal",
-      "scale": {"domain": ["Malaysia","Australia"], "range": ["#ff7f0e","#1f77b4"]},
-      "title": "Country"
-    },
-    "opacity": {
-      "condition": {"param": "countrySelect", "value": 1},
-      "value": 0.2
-    },
-    "tooltip": [
-      {"field": "name", "title": "Name"},
-      {"field": "country", "title": "Country"},
-      {"field": "wealth", "title": "Wealth (USD Billions)"},
-      {"field": "industry", "title": "Industry"}
-    ]
-  }
-};
-
-vegaEmbed('#top_chart', topSpec, {actions: false});
-
-// =====================
-// CHART 8: Education vs Billionaires per Million — Scatter
+// CHART 7: Education Enrollment vs Billionaires per Million
 // =====================
 const factorsSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Does Education Produce Billionaires?",
-    "subtitle": "Source: Billionaires Statistics Dataset 2023",
-    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
+    "subtitle": "X = Tertiary education enrollment (%) | Y = Billionaires per million people | Source: Billionaires Statistics Dataset 2023",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "anchor": "start"
   },
-  "width": 480, "height": 320,
+  "width": 380,
+  "height": 300,
   "data": {"url": "data/country_factors.csv"},
   "layer": [
     {
       "mark": {"type": "circle", "size": 120, "opacity": 0.8, "tooltip": true},
       "encoding": {
         "x": {
-          "field": "education", "type": "quantitative",
+          "field": "education",
+          "type": "quantitative",
           "title": "Tertiary Education Enrollment (%)"
         },
         "y": {
-          "field": "per_million", "type": "quantitative",
+          "field": "per_million",
+          "type": "quantitative",
           "title": "Billionaires per Million People"
         },
         "color": {
-          "field": "country", "type": "nominal",
+          "field": "country",
+          "type": "nominal",
           "scale": {
             "domain": ["Malaysia","Australia","Singapore","United States","China","Germany","United Kingdom","India","France","Japan"],
             "range": ["#ff7f0e","#1f77b4","#2ca02c","#d62728","#8c564b","#9467bd","#17becf","#e377c2","#bcbd22","#7f7f7f"]
@@ -433,77 +428,44 @@ const factorsSpec = {
 
 vegaEmbed('#factors_chart', factorsSpec, {actions: false});
 
-// =====================
-// CHART 9: Wealth Distribution — Grouped Bar with Median Rule
-// =====================
-const wealthDistSpec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "How Wealthy Are the Billionaires?",
-    "subtitle": "Distribution by wealth bracket | Source: Billionaires Statistics Dataset 2023",
-    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
-  },
-  "width": 450, "height": 280,
-  "data": {"url": "data/wealth_distribution.csv"},
-  "mark": {"type": "bar", "tooltip": true},
-  "encoding": {
-    "x": {
-      "field": "wealth_bracket", "type": "ordinal",
-      "title": "Wealth Bracket",
-      "sort": ["$1-2B","$2-5B","$5-10B","$10-20B","$20-50B","$50B+"],
-      "axis": {"labelAngle": -20}
-    },
-    "y": {
-      "field": "count", "type": "quantitative",
-      "title": "Number of Billionaires"
-    },
-    "color": {
-      "field": "country", "type": "nominal",
-      "scale": {"domain": ["Malaysia","Australia"], "range": ["#ff7f0e","#1f77b4"]},
-      "title": "Country"
-    },
-    "xOffset": {"field": "country", "type": "nominal"},
-    "tooltip": [
-      {"field": "country", "title": "Country"},
-      {"field": "wealth_bracket", "title": "Wealth Bracket"},
-      {"field": "count", "title": "Count"}
-    ]
-  }
-};
-
-vegaEmbed('#wealth_dist_chart', wealthDistSpec, {actions: false});
 
 // =====================
-// CHART 10: Tax Rate vs Billionaires per Million
+// CHART 8: Tax Rate vs Billionaires per Million
 // =====================
 const taxSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Do Lower Taxes Produce More Billionaires?",
-    "subtitle": "Source: Billionaires Statistics Dataset 2023",
-    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
+    "subtitle": "X = Total tax rate (%) | Y = Billionaires per million people | Source: Billionaires Statistics Dataset 2023",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "anchor": "start"
   },
-  "width": 480, "height": 320,
+  "width": 380,
+  "height": 300,
   "data": {"url": "data/country_factors.csv"},
   "layer": [
     {
       "mark": {"type": "circle", "size": 120, "opacity": 0.8, "tooltip": true},
       "encoding": {
         "x": {
-          "field": "tax_rate", "type": "quantitative",
+          "field": "tax_rate",
+          "type": "quantitative",
           "title": "Total Tax Rate (%)"
         },
         "y": {
-          "field": "per_million", "type": "quantitative",
+          "field": "per_million",
+          "type": "quantitative",
           "title": "Billionaires per Million People"
         },
         "color": {
-          "field": "country", "type": "nominal",
+          "field": "country",
+          "type": "nominal",
           "scale": {
             "domain": ["Malaysia","Australia","Singapore","United States","China","Germany","United Kingdom","India","France","Japan"],
             "range": ["#ff7f0e","#1f77b4","#2ca02c","#d62728","#8c564b","#9467bd","#17becf","#e377c2","#bcbd22","#7f7f7f"]
           },
-          "legend" : null
+          "legend": null
         },
         "tooltip": [
           {"field": "country", "title": "Country"},
@@ -526,3 +488,112 @@ const taxSpec = {
 };
 
 vegaEmbed('#tax_chart', taxSpec, {actions: false});
+
+
+// =====================
+// CHART 9: Wealth Distribution — Grouped Bar
+// =====================
+const wealthDistSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "How Wealthy Are the Billionaires?",
+    "subtitle": "Distribution by wealth bracket | Source: Billionaires Statistics Dataset 2023",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "anchor": "start"
+  },
+  "width": 380,
+  "height": 280,
+  "data": {"url": "data/wealth_distribution.csv"},
+  "mark": {"type": "bar", "tooltip": true},
+  "encoding": {
+    "x": {
+      "field": "wealth_bracket",
+      "type": "ordinal",
+      "title": "Wealth Bracket",
+      "sort": ["$1-2B","$2-5B","$5-10B","$10-20B","$20-50B","$50B+"],
+      "axis": {"labelAngle": -20}
+    },
+    "y": {
+      "field": "count",
+      "type": "quantitative",
+      "title": "Number of Billionaires"
+    },
+    "color": {
+      "field": "country",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Malaysia","Australia"],
+        "range": ["#ff7f0e","#1f77b4"]
+      },
+      "title": "Country"
+    },
+    "xOffset": {"field": "country", "type": "nominal"},
+    "tooltip": [
+      {"field": "country", "title": "Country"},
+      {"field": "wealth_bracket", "title": "Wealth Bracket"},
+      {"field": "count", "title": "Count"}
+    ]
+  }
+};
+
+vegaEmbed('#wealth_dist_chart', wealthDistSpec, {actions: false});
+
+
+// =====================
+// CHART 10: Interactive Top Billionaires Bar
+// =====================
+const topSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Top 10 Billionaires: Malaysia vs Australia",
+    "subtitle": "Click legend to filter by country | Source: Forbes Billionaire List 2025",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "anchor": "start"
+  },
+  "width": 380,
+  "height": 300,
+  "data": {"url": "data/top_billionaires.csv"},
+  "params": [{
+    "name": "countrySelect",
+    "select": {"type": "point", "fields": ["country"]},
+    "bind": "legend"
+  }],
+  "mark": {"type": "bar", "tooltip": true},
+  "encoding": {
+    "y": {
+      "field": "name",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null,
+      "axis": {"labelFontSize": 11}
+    },
+    "x": {
+      "field": "wealth",
+      "type": "quantitative",
+      "title": "Wealth (USD Billions)"
+    },
+    "color": {
+      "field": "country",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Malaysia","Australia"],
+        "range": ["#ff7f0e","#1f77b4"]
+      },
+      "title": "Country"
+    },
+    "opacity": {
+      "condition": {"param": "countrySelect", "value": 1},
+      "value": 0.2
+    },
+    "tooltip": [
+      {"field": "name", "title": "Name"},
+      {"field": "country", "title": "Country"},
+      {"field": "wealth", "title": "Wealth (USD Billions)"},
+      {"field": "industry", "title": "Industry"}
+    ]
+  }
+};
+
+vegaEmbed('#top_chart', topSpec, {actions: false});
