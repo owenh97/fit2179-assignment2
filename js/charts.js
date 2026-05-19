@@ -240,53 +240,63 @@ vegaEmbed('#age_chart', ageSpec, {actions: false});
 // =====================
 // CHART 5: Small Multiple Donuts — Gender & Self-Made
 // =====================
-const myGender =    [{"label":"Male","value":16},{"label":"Female","value":3}];
-const ausGender =   [{"label":"Male","value":34},{"label":"Female","value":9}];
-const mySelfMade =  [{"label":"Self-Made","value":6},{"label":"Inherited","value":5}];
-const ausSelfMade = [{"label":"Self-Made","value":29},{"label":"Inherited","value":14}];
-
 const colorScale = {
   "domain": ["Male","Female","Self-Made","Inherited"],
   "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]
 };
-
-function makeDonut(titleText, inlineData, showLegend) {
-  return {
-    "title": {"text": titleText, "fontSize": 13},
-    "width": 150,
-    "height": 150,
-    "data": {"values": inlineData},
-    "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
-    "encoding": {
-      "theta": {"field": "value", "type": "quantitative"},
-      "color": {
-        "field": "label",
-        "type": "nominal",
-        "scale": colorScale,
-        "legend": showLegend ? {"title": "Category"} : null
-      },
-      "tooltip": [
-        {"field": "label", "title": "Type"},
-        {"field": "value", "title": "Count"}
-      ]
-    }
-  };
-}
 
 const donutSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Gender & Self-Made Status: Malaysia vs Australia",
     "subtitle": "Gender: Forbes 2025 | Self-Made: Billionaires Statistics Dataset 2023",
-    "fontSize": 16,
-    "subtitleFontSize": 11,
-    "anchor": "start"
+    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
   },
   "concat": [
-    makeDonut("Malaysia — Gender",    myGender,    true),
-    makeDonut("Australia — Gender",   ausGender,   false),
-    makeDonut("Malaysia — Self-Made", mySelfMade,  false),
-    makeDonut("Australia — Self-Made",ausSelfMade, false)
+    {
+      "title": {"text": "Malaysia — Gender", "fontSize": 13},
+      "width": 150, "height": 150,
+      "data": {"url": "data/donut_my_gender.csv"},
+      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
+      "encoding": {
+        "theta": {"field": "value", "type": "quantitative"},
+        "color": {"field": "label", "type": "nominal", "scale": colorScale, "legend": {"title": "Category"}},
+        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
+      }
+    },
+    {
+      "title": {"text": "Australia — Gender", "fontSize": 13},
+      "width": 150, "height": 150,
+      "data": {"url": "data/donut_aus_gender.csv"},
+      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
+      "encoding": {
+        "theta": {"field": "value", "type": "quantitative"},
+        "color": {"field": "label", "type": "nominal", "scale": colorScale, "legend": null},
+        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
+      }
+    },
+    {
+      "title": {"text": "Malaysia — Self-Made", "fontSize": 13},
+      "width": 150, "height": 150,
+      "data": {"url": "data/donut_my_selfmade.csv"},
+      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
+      "encoding": {
+        "theta": {"field": "value", "type": "quantitative"},
+        "color": {"field": "label", "type": "nominal", "scale": colorScale, "legend": null},
+        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
+      }
+    },
+    {
+      "title": {"text": "Australia — Self-Made", "fontSize": 13},
+      "width": 150, "height": 150,
+      "data": {"url": "data/donut_aus_selfmade.csv"},
+      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
+      "encoding": {
+        "theta": {"field": "value", "type": "quantitative"},
+        "color": {"field": "label", "type": "nominal", "scale": colorScale, "legend": null},
+        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
+      }
+    }
   ],
   "columns": 2
 };
