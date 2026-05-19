@@ -140,13 +140,14 @@ const bubbleSpec = {
           "type": "quantitative",
           "title": "GDP (USD Billions)",
           "scale": {"type": "log"},
-          "axis": {"format": ",.0f"}
+          "axis": {"format": ",.0f", "grid": false}
         },
         "y": {
           "field": "billionaire_count",
           "type": "quantitative",
           "title": "Number of Billionaires",
           "scale": {"type": "log"}
+          "axis": {"grid": false}
         },
         "size": {
           "field": "total_worth_bn",
@@ -407,7 +408,8 @@ const factorsSpec = {
           "scale": {
             "domain": ["Malaysia","Australia","Singapore","United States","China","Germany","United Kingdom","India","France","Japan"],
             "range": ["#ff7f0e","#1f77b4","#2ca02c","#d62728","#8c564b","#9467bd","#17becf","#e377c2","#bcbd22","#7f7f7f"]
-          }
+          },
+          "legend": null
         },
         "tooltip": [
           {"field": "country", "title": "Country"},
@@ -500,7 +502,8 @@ const taxSpec = {
           "scale": {
             "domain": ["Malaysia","Australia","Singapore","United States","China","Germany","United Kingdom","India","France","Japan"],
             "range": ["#ff7f0e","#1f77b4","#2ca02c","#d62728","#8c564b","#9467bd","#17becf","#e377c2","#bcbd22","#7f7f7f"]
-          }
+          },
+          "legend" : null
         },
         "tooltip": [
           {"field": "country", "title": "Country"},
