@@ -315,4 +315,30 @@ const donutSpec = {
   "columns": 2
 };
 
+// =====================
+// CHART 5: Heatmap wealth by indusry x country
+// =====================
 vegaEmbed('#donut_chart', donutSpec, {actions: false});
+
+const heatmapSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Industry Wealth Heatmap", "anchor": "start", "fontSize": 16},
+  "width": 200, "height": 300,
+  "data": {"url": "data/industry_data.csv"},
+  "mark": {"type": "rect", "tooltip": true},
+  "encoding": {
+    "x": {"field": "country", "type": "nominal", "title": null},
+    "y": {"field": "industry", "type": "nominal", "title": null, "sort": "-x"},
+    "color": {
+      "field": "count", "type": "quantitative",
+      "title": "Billionaires",
+      "scale": {"scheme": "oranges"}
+    },
+    "tooltip": [
+      {"field": "country", "title": "Country"},
+      {"field": "industry", "title": "Industry"},
+      {"field": "count", "title": "Count"}
+    ]
+  }
+};
+vegaEmbed('#heatmap_chart', heatmapSpec, {actions: false});
