@@ -254,93 +254,61 @@ const donutSpec = {
     {
       "title": "Malaysia — Gender",
       "width": 150, "height": 150,
-      "transform": [
-        {"filter": "datum.country == 'Malaysia' && datum.category == 'Gender'"}
-      ],
+      "transform": [{"filter": {"and": [{"field": "country", "equal": "Malaysia"}, {"field": "category", "equal": "Gender"}]}}],
       "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
       "encoding": {
         "theta": {"field": "value", "type": "quantitative"},
         "color": {
           "field": "label", "type": "nominal",
-          "scale": {
-            "domain": ["Male","Female","Self-Made","Inherited"],
-            "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]
-          },
+          "scale": {"domain": ["Male","Female","Self-Made","Inherited"], "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]},
           "legend": {"title": "Category"}
         },
-        "tooltip": [
-          {"field": "label", "title": "Type"},
-          {"field": "value", "title": "Count"}
-        ]
+        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
       }
     },
     {
       "title": "Australia — Gender",
       "width": 150, "height": 150,
-      "transform": [
-        {"filter": "datum.country == 'Australia' && datum.category == 'Gender'"}
-      ],
+      "transform": [{"filter": {"and": [{"field": "country", "equal": "Australia"}, {"field": "category", "equal": "Gender"}]}}],
       "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
       "encoding": {
         "theta": {"field": "value", "type": "quantitative"},
         "color": {
           "field": "label", "type": "nominal",
-          "scale": {
-            "domain": ["Male","Female","Self-Made","Inherited"],
-            "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]
-          },
+          "scale": {"domain": ["Male","Female","Self-Made","Inherited"], "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]},
           "legend": null
         },
-        "tooltip": [
-          {"field": "label", "title": "Type"},
-          {"field": "value", "title": "Count"}
-        ]
+        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
       }
     },
     {
       "title": "Malaysia — Self-Made",
       "width": 150, "height": 150,
-      "transform": [
-        {"filter": "datum.country == 'Malaysia' && datum.category == 'SelfMade'"}
-      ],
+      "transform": [{"filter": {"and": [{"field": "country", "equal": "Malaysia"}, {"field": "category", "equal": "SelfMade"}]}}],
       "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
       "encoding": {
         "theta": {"field": "value", "type": "quantitative"},
         "color": {
           "field": "label", "type": "nominal",
-          "scale": {
-            "domain": ["Male","Female","Self-Made","Inherited"],
-            "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]
-          },
+          "scale": {"domain": ["Male","Female","Self-Made","Inherited"], "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]},
           "legend": null
         },
-        "tooltip": [
-          {"field": "label", "title": "Type"},
-          {"field": "value", "title": "Count"}
-        ]
+        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
       }
     },
     {
       "title": "Australia — Self-Made",
       "width": 150, "height": 150,
-      "transform": [
-        {"filter": "datum.country == 'Australia' && datum.category == 'SelfMade'"}
-      ],
+      "transform": [{"filter": {"and": [{"field": "country", "equal": "Australia"}, {"field": "category", "equal": "SelfMade"}]}}],
       "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
       "encoding": {
         "theta": {"field": "value", "type": "quantitative"},
         "color": {
           "field": "label", "type": "nominal",
-          "scale": {
-            "domain": ["Male","Female","Self-Made","Inherited"],
-            "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]
-          },
+          "scale": {"domain": ["Male","Female","Self-Made","Inherited"], "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]},
           "legend": null
         },
-        "tooltip": [
-          {"field": "label", "title": "Type"},
-          {"field": "value", "title": "Count"}
-        ]
+        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
       }
     }
   ],
