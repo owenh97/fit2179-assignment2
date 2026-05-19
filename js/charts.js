@@ -386,7 +386,7 @@ const factorsSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Does Education Produce Billionaires?",
-    "subtitle": "X = Tertiary education enrollment (%) | Y = Billionaires per million people | Source: Billionaires Statistics Dataset 2023",
+    "subtitle": "Source: Billionaires Statistics Dataset 2023",
     "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
   },
   "width": 480, "height": 320,
@@ -480,7 +480,7 @@ const taxSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Do Lower Taxes Produce More Billionaires?",
-    "subtitle": "X = Total tax rate (%) | Y = Billionaires per million people | Source: Billionaires Statistics Dataset 2023",
+    "subtitle": "Source: Billionaires Statistics Dataset 2023",
     "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
   },
   "width": 480, "height": 320,
