@@ -48,9 +48,16 @@
       font-size: 1em;
       line-height: 1.7;
       color: #444;
+      position: relative;
+      z-index: 1;
     }
     .chart-container {
       padding: 10px;
+      position: relative;
+      z-index: 0;
+    }
+    .pure-g {
+      align-items: flex-start;
     }
     #footer {
       text-align: center;
@@ -59,22 +66,7 @@
       color: #888;
       border-top: 1px solid #ddd;
       margin-top: 40px;
-    .pure-g {
-    align-items: flex-start;
     }
-    .narrative {
-      padding: 10px 30px 10px 0;
-      font-size: 1em;
-      line-height: 1.7;
-      color: #444;
-      position: relative;
-      z-index: 1;
-    }
-    .chart-container {
-      padding: 10px;
-      position: relative;
-      z-index: 0;
-    }}
   </style>
 </head>
 <body>
@@ -91,8 +83,8 @@
     <div class="pure-g">
       <div class="pure-u-1-3">
         <div class="narrative">
-          <p>Billionaires are not evenly distributed across the world The USA and China alone account for nearly half of the world's billionaires. But what about a smaller nation like Malaysia or Australia?</p>
-          <p>Malaysia has just 11 billionaires compared to Australia's 43. Despite both being upper-middle to high-income economies in the Asia-Pacific region.</p>
+          <p>Billionaires are not evenly distributed across the globe. The United States and China alone account for nearly half of the world's billionaires. But what does it take for a smaller nation like Malaysia or Australia to produce one?</p>
+          <p>Malaysia has just 19 billionaires compared to Australia's 47 — despite both being upper-middle to high-income economies in the Asia-Pacific region.</p>
         </div>
       </div>
       <div class="pure-u-2-3">
@@ -106,7 +98,7 @@
   <!-- SECTION 2: Industry -->
   <div class="section">
     <h2>Which Industries Produce Billionaires?</h2>
-  
+
     <!-- Row 1: Narrative left, Bar chart right -->
     <div class="pure-g">
       <div class="pure-u-1-3">
@@ -121,7 +113,7 @@
         </div>
       </div>
     </div>
-  
+
     <!-- Row 2: Heatmap left, Narrative right -->
     <div class="pure-g" style="margin-top: 30px;">
       <div class="pure-u-1-2">
@@ -135,15 +127,18 @@
         </div>
       </div>
     </div>
+  </div>
 
-  <!-- SECTION 3: GDP Bubble -->
+  <!-- SECTION 3: National Factors -->
   <div class="section">
     <h2>Does National Wealth Matter?</h2>
+
+    <!-- Row 1: Narrative left, Bubble chart right -->
     <div class="pure-g">
       <div class="pure-u-1-3">
         <div class="narrative">
-          <p>GDP alone does not determine how many billionaires a country produces. Singapore, with a much smaller economy than Malaysia, has produced 46 billionaires, that's more than four times Malaysia's count.</p>
-          <p>Despite decades of economic growth, Malaysia remains an outlier when compared to peers of similar GDP size.</p>
+          <p>GDP alone does not determine how many billionaires a country produces. Singapore, with a much smaller economy than Malaysia, has produced 46 billionaires — more than four times Malaysia's count.</p>
+          <p>Malaysia punches below its weight. Despite decades of economic growth, it remains an outlier when compared to peers of similar GDP size.</p>
         </div>
       </div>
       <div class="pure-u-2-3">
@@ -152,9 +147,32 @@
         </div>
       </div>
     </div>
+
+    <!-- Row 2: Education scatter left, Tax scatter right -->
+    <div class="pure-g" style="margin-top: 40px;">
+      <div class="pure-u-1-2">
+        <div class="chart-container">
+          <div id="factors_chart"></div>
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="chart-container">
+          <div id="tax_chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Explanation of scatter pair -->
+    <div class="pure-g" style="margin-top: 10px;">
+      <div class="pure-u-1-1">
+        <div class="narrative" style="padding: 0 20px;">
+          <p>Singapore's outlier position — 8 billionaires per million people despite a moderate tax rate — suggests that open trade policies and financial infrastructure matter more than tax rates alone. Malaysia's low education enrollment of 45% compared to Australia's 113% may partly explain the gap in billionaire production.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- SECTION 4: Age -->
+  <!-- SECTION 4: Age Distribution -->
   <div class="section">
     <h2>How Old Are They?</h2>
     <div class="pure-g">
@@ -165,14 +183,14 @@
       </div>
       <div class="pure-u-1-3">
         <div class="narrative">
-          <p>Malaysian billionaires are much more older — the median age is 71, and the youngest is 45. Wealth in Malaysia has not yet passed to the next generation.</p>
+          <p>Malaysian billionaires are overwhelmingly older — the median age is 71, and the youngest is 45. Wealth in Malaysia has not yet passed to the next generation.</p>
           <p>Australia shows far more generational spread, with billionaires as young as 35. Melanie Perkins (Canva) and Mike Cannon-Brookes (Atlassian) represent a new wave of technology-driven wealth.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 5: Donuts -->
+  <!-- SECTION 5: Who Are They -->
   <div class="section">
     <h2>Who Are They?</h2>
     <div class="pure-g">
@@ -183,8 +201,41 @@
         </div>
       </div>
       <div class="pure-u-2-3">
-        <div class="chart-container" style="padding-left: 200px;">
+        <div class="chart-container" style="padding-left: 60px;">
           <div id="donut_chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: Wealth Distribution + Top Billionaires -->
+  <div class="section">
+    <h2>How Much Do They Actually Have?</h2>
+
+    <!-- Row 1: Wealth distribution left, Top billionaires right -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div class="chart-container">
+          <div id="wealth_dist_chart"></div>
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="chart-container">
+          <div id="top_chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Narrative below both charts -->
+    <div class="pure-g" style="margin-top: 10px;">
+      <div class="pure-u-1-2">
+        <div class="narrative" style="padding: 0 20px;">
+          <p>The vast majority of billionaires in both countries sit in the $1–2B bracket. Being a billionaire does not mean being equally wealthy — most are closer to the floor than the ceiling.</p>
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="narrative" style="padding: 0 20px;">
+          <p>Click on a country in the legend to highlight only that country's billionaires. Australia's wealthiest — Gina Rinehart at $29.3B — dwarfs Malaysia's richest, Robert Kuok at $12.1B. Click the legend to filter by country.</p>
         </div>
       </div>
     </div>
@@ -201,7 +252,7 @@
       Author: Owen Hee &nbsp;|&nbsp; FIT2179 Data Visualisation &nbsp;|&nbsp;
       Monash University Malaysia &nbsp;|&nbsp; May 2026
     </p>
-    <p>AI Acknowledgement: Generative AI used for coding assistance and grammar checking.</p>
+    <p>AI Acknowledgement: Generative AI (Claude) used for coding assistance and grammar checking.</p>
   </div>
 
   <script src="js/charts.js"></script>
