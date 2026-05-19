@@ -2,183 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Anatomy of Wealth</title>
-  
+  <!-- Vega-Lite libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
-  
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #f4f6f8;
-      color: #1a2a3a;
-      margin: 0;
-      padding: 30px;
-    }
-    .main-container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      background: white;
-      border-radius: 12px;
-      margin-bottom: 35px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-      border: 1px solid #e1e8ed;
-    }
-    header h1 {
-      margin: 0 0 10px 0;
-      font-size: 2.4rem;
-      color: #002b49;
-    }
-    header p {
-      margin: 0;
-      color: #546e7a;
-      font-size: 1.1rem;
-    }
-    .segment-section {
-      background: white;
-      padding: 30px;
-      margin-bottom: 35px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-      border: 1px solid #e1e8ed;
-    }
-    .segment-section h2 {
-      margin-top: 0;
-      font-size: 1.6rem;
-      color: #002b49;
-      border-bottom: 2px solid #eef2f5;
-      padding-bottom: 12px;
-      margin-bottom: 25px;
-    }
-    .chart-box {
-      width: 100%;
-      min-height: 450px;
-      background-color: #fafbfb;
-      border: 1px dashed #cfd8dc;
-      border-radius: 8px;
-      box-sizing: border-box;
-      padding: 10px;
-    }
-    .narrative-block {
-      background-color: #f8fafd;
-      border-left: 4px solid #008080;
-      padding: 20px;
-      margin-top: 25px;
-      border-radius: 0 8px 8px 0;
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-    .pad-right { padding-right: 15px; }
-    .pad-left { padding-left: 15px; }
-    @media (max-width: 768px) {
-      .pad-right { padding-right: 0; }
-      .pad-left { padding-left: 0; margin-top: 20px; }
-    }
-  </style>
+  <!-- Pure CSS for grid layout -->
+  <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/purecss@3/build/pure-min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="main-container">
+  <!-- HEADER -->
+  <div id="header">
+    <h1>The Anatomy of Wealth</h1>
+    <p>How National Factors Shape Billionaires in Malaysia, Australia and the World</p>
+  </div>
 
-  <header>
-    <h1>The Anatomy of Wealth: How National Ecosystems Shape Billionaires</h1>
-    <p>Author: Owen Hee | Data Sources: Global Billionaire Statistics & Forbes</p>
-  </header>
-
-  <section class="segment-section">
-    <h2>Segment 1: The Local Duel — Malaysia vs. Australia Profiles</h2>
+  <!-- SECTION 1: Global Overview -->
+  <div class="section">
+    <h2>Where Are the Billionaires?</h2>
     <div class="pure-g">
-      <div class="pure-u-1 pure-u-md-1-2">
-        <div class="pad-right">
-          <div class="chart-box" id="symbol_map"></div>
-        </div>
-      </div>
-      <div class="pure-u-1 pure-u-md-1-2">
-        <div class="pad-left">
-          <div class="chart-box" id="grouped_bar"></div>
-        </div>
-      </div>
+      <div class="pure-u-1-3"><p>narrative text here</p></div>
+      <div class="pure-u-2-3"><div id="map_chart"></div></div>
     </div>
-    <div class="narrative-block">
-      <strong>Analytical Storytelling:</strong> Australia's billionaire landscape is vast, coastal, and dominated by self-made entrepreneurs in heavy industrial mining and modern software technology. In contrast, Malaysia's billionaire presence is tighter, heavily centered around diversified, inherited family conglomerate structures, and grounded in structural property and financial channels.
-    </div>
-  </section>
+  </div>
 
-  <section class="segment-section">
-    <h2>Segment 2: Macroeconomics — Tax Rates, Higher Education & Demographics</h2>
+  <!-- SECTION 2: Industry -->
+  <div class="section">
+    <h2>Which Industries Produce Billionaires?</h2>
     <div class="pure-g">
-      <div class="pure-u-1 pure-u-md-1-3">
-        <div style="padding-right: 10px;">
-          <div class="chart-box" id="macro_scatter"></div>
-        </div>
-      </div>
-      <div class="pure-u-1 pure-u-md-1-3">
-        <div style="padding-left: 10px; padding-right: 10px;">
-          <div class="chart-box" id="macro_bubble"></div>
-        </div>
-      </div>
-      <div class="pure-u-1 pure-u-md-1-3">
-        <div style="padding-left: 10px;">
-          <div class="chart-box" id="macro_donut"></div>
-        </div>
-      </div>
+      <div class="pure-u-2-3"><div id="industry_chart"></div></div>
+      <div class="pure-u-1-3"><p>narrative text here</p></div>
     </div>
-    <div class="narrative-block">
-      <strong>Analytical Storytelling:</strong> Cross-examining national indicators shows that billionaire clusters thrive inside robust economic environments with high levels of tertiary education access and structured infrastructure, breaking the misconception that wealth generation is purely limited by baseline national tax rate indices.
-    </div>
-  </section>
+  </div>
 
-  <section class="segment-section">
-    <h2>Segment 3: The Wealth Pipeline — Flows, Trajectories & Outliers</h2>
+  <!-- SECTION 3: GDP Bubble -->
+  <div class="section">
+    <h2>Does National Wealth Matter?</h2>
     <div class="pure-g">
-      <div class="pure-u-1 pure-u-md-1-2">
-        <div class="pad-right">
-          <div class="chart-box" id="pipeline_sankey"></div>
-        </div>
-      </div>
-      <div class="pure-u-1 pure-u-md-1-2">
-        <div class="pad-left">
-          <div class="chart-box" id="pipeline_outliers"></div>
-        </div>
-      </div>
+      <div class="pure-u-1-3"><p>narrative text here</p></div>
+      <div class="pure-u-2-3"><div id="bubble_chart"></div></div>
     </div>
-    <div class="narrative-block">
-      <strong>Analytical Storytelling:</strong> Mapping individual industry sectors isolates structural wealth outliers across generational thresholds, charting the explicit paths through which industrial capital cascades across global resource, real estate, and digital markets.
-    </div>
-  </section>
+  </div>
 
-  <section class="segment-section">
-    <h2>Segment 4: The Global Stage — National GDP Concentration</h2>
+  <!-- SECTION 4: Age -->
+  <div class="section">
+    <h2>How Old Are They?</h2>
     <div class="pure-g">
-      <div class="pure-u-1">
-        <div class="chart-box" id="global_map"></div>
-      </div>
+      <div class="pure-u-2-3"><div id="age_chart"></div></div>
+      <div class="pure-u-1-3"><p>narrative text here</p></div>
     </div>
-    <div class="narrative-block">
-      <strong>Analytical Storytelling:</strong> Evaluating aggregate sovereign indicators reveals the global concentration of billionaire fortunes when normalized against total national GDP output, capturing variations between highly diversified market economies and resource-dependent networks.
+  </div>
+
+  <!-- SECTION 5: Donuts -->
+  <div class="section">
+    <h2>Who Are They?</h2>
+    <div class="pure-g">
+      <div class="pure-u-1-3"><p>narrative text here</p></div>
+      <div class="pure-u-2-3"><div id="donut_chart"></div></div>
     </div>
-  </section>
+  </div>
 
-</div>
+  <!-- FOOTER -->
+  <div id="footer">
+    <p>Data: Forbes Billionaire List 2025 | Billionaires Statistics Dataset 2023 (Kaggle)</p>
+    <p>Author: Owen Hee | FIT2179 | Monash University Malaysia | May 2026</p>
+  </div>
 
-  <script type="text/javascript">
-    vegaEmbed('#symbol_map', 'map_local_symbol.vg.json').catch(console.error);
-    vegaEmbed('#grouped_bar', 'bar_grouped_industry.vg.json').catch(console.error);
-    vegaEmbed('#macro_scatter', 'macro_scatter_tax.vg.json').catch(console.error);
-    vegaEmbed('#macro_bubble', 'macro_bubble_edu.vg.json').catch(console.error);
-    vegaEmbed('#macro_donut', 'macro_donut_gender.vg.json').catch(console.error);
-    vegaEmbed('#pipeline_sankey', 'pipeline_sankey.vg.json').catch(console.error);
-    vegaEmbed('#pipeline_outliers', 'pipeline_outliers.vg.json').catch(console.error);
-    vegaEmbed('#global_map', 'global_map.vg.json').catch(console.error);
-  </script>
-
+  <script src="js/charts.js"></script>
 </body>
 </html>
