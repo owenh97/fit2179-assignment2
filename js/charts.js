@@ -318,7 +318,6 @@ const donutSpec = {
 // =====================
 // CHART 6: Heatmap wealth by indusry x country
 // =====================
-vegaEmbed('#donut_chart', donutSpec, {actions: false});
 
 const heatmapSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
