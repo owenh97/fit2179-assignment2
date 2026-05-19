@@ -240,6 +240,39 @@ vegaEmbed('#age_chart', ageSpec, {actions: false});
 // =====================
 // CHART 5: Small Multiple Donuts — Gender & Self-Made
 // =====================
+const myGender =    [{"label":"Male","value":16},{"label":"Female","value":3}];
+const ausGender =   [{"label":"Male","value":34},{"label":"Female","value":9}];
+const mySelfMade =  [{"label":"Self-Made","value":6},{"label":"Inherited","value":5}];
+const ausSelfMade = [{"label":"Self-Made","value":29},{"label":"Inherited","value":14}];
+
+const colorScale = {
+  "domain": ["Male","Female","Self-Made","Inherited"],
+  "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]
+};
+
+function makeDonut(titleText, inlineData, showLegend) {
+  return {
+    "title": {"text": titleText, "fontSize": 13},
+    "width": 150,
+    "height": 150,
+    "data": {"values": inlineData},
+    "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
+    "encoding": {
+      "theta": {"field": "value", "type": "quantitative"},
+      "color": {
+        "field": "label",
+        "type": "nominal",
+        "scale": colorScale,
+        "legend": showLegend ? {"title": "Category"} : null
+      },
+      "tooltip": [
+        {"field": "label", "title": "Type"},
+        {"field": "value", "title": "Count"}
+      ]
+    }
+  };
+}
+
 const donutSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
@@ -249,71 +282,16 @@ const donutSpec = {
     "subtitleFontSize": 11,
     "anchor": "start"
   },
-  "data": {"url": "data/donut_data.csv"},
   "concat": [
-    {
-      "title": "Malaysia — Gender",
-      "width": 150, "height": 150,
-      "transform": [{"filter": {"and": [{"field": "country", "equal": "Malaysia"}, {"field": "category", "equal": "Gender"}]}}],
-      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
-      "encoding": {
-        "theta": {"field": "value", "type": "quantitative"},
-        "color": {
-          "field": "label", "type": "nominal",
-          "scale": {"domain": ["Male","Female","Self-Made","Inherited"], "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]},
-          "legend": {"title": "Category"}
-        },
-        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
-      }
-    },
-    {
-      "title": "Australia — Gender",
-      "width": 150, "height": 150,
-      "transform": [{"filter": {"and": [{"field": "country", "equal": "Australia"}, {"field": "category", "equal": "Gender"}]}}],
-      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
-      "encoding": {
-        "theta": {"field": "value", "type": "quantitative"},
-        "color": {
-          "field": "label", "type": "nominal",
-          "scale": {"domain": ["Male","Female","Self-Made","Inherited"], "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]},
-          "legend": null
-        },
-        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
-      }
-    },
-    {
-      "title": "Malaysia — Self-Made",
-      "width": 150, "height": 150,
-      "transform": [{"filter": {"and": [{"field": "country", "equal": "Malaysia"}, {"field": "category", "equal": "SelfMade"}]}}],
-      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
-      "encoding": {
-        "theta": {"field": "value", "type": "quantitative"},
-        "color": {
-          "field": "label", "type": "nominal",
-          "scale": {"domain": ["Male","Female","Self-Made","Inherited"], "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]},
-          "legend": null
-        },
-        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
-      }
-    },
-    {
-      "title": "Australia — Self-Made",
-      "width": 150, "height": 150,
-      "transform": [{"filter": {"and": [{"field": "country", "equal": "Australia"}, {"field": "category", "equal": "SelfMade"}]}}],
-      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
-      "encoding": {
-        "theta": {"field": "value", "type": "quantitative"},
-        "color": {
-          "field": "label", "type": "nominal",
-          "scale": {"domain": ["Male","Female","Self-Made","Inherited"], "range": ["#4e79a7","#f28e2b","#59a14f","#e15759"]},
-          "legend": null
-        },
-        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
-      }
-    }
+    makeDonut("Malaysia — Gender",    myGender,    true),
+    makeDonut("Australia — Gender",   ausGender,   false),
+    makeDonut("Malaysia — Self-Made", mySelfMade,  false),
+    makeDonut("Australia — Self-Made",ausSelfMade, false)
   ],
   "columns": 2
 };
+
+vegaEmbed('#donut_chart', donutSpec, {actions: false});
 
 // =====================
 // CHART 6: Heatmap wealth by indusry x country
