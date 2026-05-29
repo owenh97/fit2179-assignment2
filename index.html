@@ -85,8 +85,10 @@
     .map-rect {
       background: #fff; border-radius: 14px;
       box-shadow: 0 3px 20px rgba(0,0,0,0.09);
-      width: 100%; overflow: hidden; padding: 16px; margin-bottom: 0;
+      width: 100%; min-height: 520px;
+      overflow: visible; padding: 16px; margin-bottom: 0;
     }
+    .map-rect > div { min-height: 480px; }
 
     /* ── CARD ── */
     .card {
@@ -188,7 +190,7 @@
     <div class="green-divider-left"></div>
     <p class="lead">Malaysia's billionaires are overwhelmingly concentrated in the Klang Valley — Kuala Lumpur and Selangor dominate. Wealth is as geographically concentrated as it is economically.</p>
     <div class="map-rect">
-      <div id="malaysia_map"></div>
+      <div id="malaysia_map" style="min-height:480px; display:block;"></div>
     </div>
     <div class="pure-g" style="margin-top: 30px;">
       <div class="pure-u-1-2">
@@ -211,7 +213,7 @@
     <div class="green-divider-left"></div>
     <p class="lead">Australia's 47 billionaires are spread across its states — from mining magnates in Western Australia to tech founders in New South Wales and Victoria. Geography reflects industry.</p>
     <div class="map-rect">
-      <div id="australia_map"></div>
+      <div id="australia_map" style="min-height:480px; display:block;"></div>
     </div>
     <div class="pure-g" style="margin-top: 30px;">
       <div class="pure-u-1-2">
