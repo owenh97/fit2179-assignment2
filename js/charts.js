@@ -114,7 +114,7 @@ vegaEmbed('#malaysia_map', {
     "text": "Malaysian Billionaires by Location",
     "subtitle": "Circle size = wealth  ·  Colour = industry  ·  Scroll to zoom  ·  Drag to pan  ·  Source: Forbes 2025"
   },
-  "width": "container", "height": 440,
+  "width": 820, "height": 440,
   "autosize": {"type": "fit", "contains": "padding"},
   "view": {"fill": "#c8e4f0", "stroke": null},
   "params": [{"name": "grid", "select": "interval", "bind": "scales"}],
@@ -161,7 +161,7 @@ vegaEmbed('#australia_map', {
     "text": "Australian Billionaires by Location",
     "subtitle": "Circle size = wealth  ·  Colour = industry  ·  Scroll to zoom  ·  Drag to pan  ·  Source: Forbes 2025"
   },
-  "width": "container", "height": 440,
+  "width": 820, "height": 440,
   "autosize": {"type": "fit", "contains": "padding"},
   "view": {"fill": "#c8e4f0", "stroke": null},
   "params": [{"name": "grid", "select": "interval", "bind": "scales"}],
