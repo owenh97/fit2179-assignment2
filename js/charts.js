@@ -5,13 +5,12 @@ const mapSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Global Distribution of Billionaires",
-    "subtitle": "Circle size = number of billionaires | Source: Billionaires Statistics Dataset 2023",
-    "fontSize": 16,
-    "subtitleFontSize": 11,
-    "anchor": "start"
+    "subtitle": "Circle size = number of billionaires | Hover over circles for details | Source: Billionaires Statistics Dataset 2023",
+    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
   },
-  "width": 600,
-  "height": 350,
+  "width": 750,
+  "height": 430,
+  "view": {"fill": "#d6eaf8"},
   "projection": {"type": "naturalEarth1"},
   "layer": [
     {
@@ -19,40 +18,34 @@ const mapSpec = {
         "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
         "format": {"type": "topojson", "feature": "countries"}
       },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#e8e8e8",
-        "stroke": "#ffffff",
-        "strokeWidth": 0.5
-      }
+      "mark": {"type": "geoshape", "fill": "#e8e8e8", "stroke": "#ffffff", "strokeWidth": 0.5}
     },
     {
       "data": {"url": "data/map_data.csv"},
-      "mark": {
-        "type": "circle",
-        "opacity": 0.7,
-        "tooltip": true
-      },
+      "mark": {"type": "circle", "opacity": 0.75, "tooltip": true},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude": {"field": "lat", "type": "quantitative"},
         "size": {
-          "field": "billionaire_count",
-          "type": "quantitative",
+          "field": "billionaire_count", "type": "quantitative",
           "title": "No. of Billionaires",
-          "scale": {"range": [20, 1500]},
-          "legend": {"orient": "bottom-right"}
+          "scale": {"range": [30, 2500]},
+          "legend": {
+            "orient": "bottom-left",
+            "title": "No. of Billionaires",
+            "titleFontSize": 11,
+            "labelFontSize": 10,
+            "values": [1, 10, 50, 100, 500, 754]
+          }
         },
         "color": {
-          "field": "billionaire_count",
-          "type": "quantitative",
-          "title": "No. of Billionaires",
+          "field": "billionaire_count", "type": "quantitative",
           "scale": {"scheme": "orangered"},
           "legend": null
         },
         "tooltip": [
           {"field": "country", "title": "Country"},
-          {"field": "billionaire_count", "title": "Billionaires"},
+          {"field": "billionaire_count", "title": "No. of Billionaires"},
           {"field": "total_wealth", "title": "Total Wealth (USD Billions)", "format": ",.0f"}
         ]
       }
@@ -181,18 +174,24 @@ const bubbleSpec = {
       "mark": {"type": "circle", "opacity": 0.7, "tooltip": true},
       "encoding": {
         "x": {
-          "field": "gdp_bn",
-          "type": "quantitative",
+          "field": "gdp_bn", "type": "quantitative",
           "title": "GDP (USD Billions)",
-          "scale": {"type": "log"},
-          "axis": {"format": ",.0f", "grid": false}
+          "scale": {"type": "log", "domain": [1, 150000]},
+          "axis": {
+          "format": ",.0f", "grid": false,
+          "tickCount": 6,
+          "values": [1, 10, 100, 1000, 10000, 100000]
+          }
         },
         "y": {
-          "field": "billionaire_count",
-          "type": "quantitative",
+          "field": "billionaire_count", "type": "quantitative",
           "title": "Number of Billionaires",
-          "scale": {"type": "log"},
-          "axis": {"grid": false}
+          "scale": {"type": "log", "domain": [1, 1000]},
+          "axis": {
+          "grid": false,
+          "tickCount": 5,
+          "values": [1, 3, 10, 30, 100, 300, 1000]
+          }
         },
         "size": {
           "field": "total_worth_bn",
@@ -296,70 +295,132 @@ const donutSpec = {
   "title": {
     "text": "Gender & Self-Made Status: Malaysia vs Australia",
     "subtitle": "Gender: Forbes 2025 | Self-Made: Billionaires Statistics Dataset 2023",
-    "fontSize": 16,
-    "subtitleFontSize": 11,
-    "anchor": "start"
+    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
   },
   "concat": [
     {
       "title": {"text": "Malaysia — Gender", "fontSize": 13},
       "width": 150, "height": 150,
       "data": {"url": "data/donut_my_gender.csv"},
-      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
-      "encoding": {
-        "theta": {"field": "value", "type": "quantitative"},
-        "color": {
-          "field": "label", "type": "nominal",
-          "scale": colorScale,
-          "legend": {"title": "Category"}
+      "layer": [
+        {
+          "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
+          "encoding": {
+            "theta": {"field": "value", "type": "quantitative"},
+            "color": {
+              "field": "label", "type": "nominal",
+              "scale": colorScale,
+              "legend": {"title": "Category"}
+            },
+            "tooltip": [
+              {"field": "label", "title": "Type"},
+              {"field": "value", "title": "Count"},
+              {"field": "percent", "title": "Percentage", "format": ".1f"}
+            ]
+          }
         },
-        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
-      }
+        {
+          "mark": {"type": "text", "radius": 70, "fontSize": 10, "fontWeight": "bold"},
+          "encoding": {
+            "theta": {"field": "value", "type": "quantitative", "stack": true},
+            "text": {"field": "percent", "type": "quantitative", "format": ".1f"},
+            "color": {"value": "#333"}
+          }
+        }
+      ]
     },
     {
       "title": {"text": "Australia — Gender", "fontSize": 13},
       "width": 150, "height": 150,
       "data": {"url": "data/donut_aus_gender.csv"},
-      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
-      "encoding": {
-        "theta": {"field": "value", "type": "quantitative"},
-        "color": {
-          "field": "label", "type": "nominal",
-          "scale": colorScale,
-          "legend": null
+      "layer": [
+        {
+          "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
+          "encoding": {
+            "theta": {"field": "value", "type": "quantitative"},
+            "color": {
+              "field": "label", "type": "nominal",
+              "scale": colorScale,
+              "legend": null
+            },
+            "tooltip": [
+              {"field": "label", "title": "Type"},
+              {"field": "value", "title": "Count"},
+              {"field": "percent", "title": "Percentage", "format": ".1f"}
+            ]
+          }
         },
-        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
-      }
+        {
+          "mark": {"type": "text", "radius": 70, "fontSize": 10, "fontWeight": "bold"},
+          "encoding": {
+            "theta": {"field": "value", "type": "quantitative", "stack": true},
+            "text": {"field": "percent", "type": "quantitative", "format": ".1f"},
+            "color": {"value": "#333"}
+          }
+        }
+      ]
     },
     {
       "title": {"text": "Malaysia — Self-Made", "fontSize": 13},
       "width": 150, "height": 150,
       "data": {"url": "data/donut_my_selfmade.csv"},
-      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
-      "encoding": {
-        "theta": {"field": "value", "type": "quantitative"},
-        "color": {
-          "field": "label", "type": "nominal",
-          "scale": colorScale,
-          "legend": null
+      "layer": [
+        {
+          "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
+          "encoding": {
+            "theta": {"field": "value", "type": "quantitative"},
+            "color": {
+              "field": "label", "type": "nominal",
+              "scale": colorScale,
+              "legend": null
+            },
+            "tooltip": [
+              {"field": "label", "title": "Type"},
+              {"field": "value", "title": "Count"},
+              {"field": "percent", "title": "Percentage", "format": ".1f"}
+            ]
+          }
         },
-        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
-      }
+        {
+          "mark": {"type": "text", "radius": 70, "fontSize": 10, "fontWeight": "bold"},
+          "encoding": {
+            "theta": {"field": "value", "type": "quantitative", "stack": true},
+            "text": {"field": "percent", "type": "quantitative", "format": ".1f"},
+            "color": {"value": "#333"}
+          }
+        }
+      ]
     },
     {
       "title": {"text": "Australia — Self-Made", "fontSize": 13},
       "width": 150, "height": 150,
       "data": {"url": "data/donut_aus_selfmade.csv"},
-      "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
-      "encoding": {
-        "theta": {"field": "value", "type": "quantitative"},
-        "color": {
-          "field": "label", "type": "nominal",
-          "scale": colorScale,
-          "legend": null
+      "layer": [
+        {
+          "mark": {"type": "arc", "innerRadius": 45, "tooltip": true},
+          "encoding": {
+            "theta": {"field": "value", "type": "quantitative"},
+            "color": {
+              "field": "label", "type": "nominal",
+              "scale": colorScale,
+              "legend": null
+            },
+            "tooltip": [
+              {"field": "label", "title": "Type"},
+              {"field": "value", "title": "Count"},
+              {"field": "percent", "title": "Percentage", "format": ".1f"}
+            ]
+          }
         },
-        "tooltip": [{"field": "label", "title": "Type"}, {"field": "value", "title": "Count"}]
-      }
+        {
+          "mark": {"type": "text", "radius": 70, "fontSize": 10, "fontWeight": "bold"},
+          "encoding": {
+            "theta": {"field": "value", "type": "quantitative", "stack": true},
+            "text": {"field": "percent", "type": "quantitative", "format": ".1f"},
+            "color": {"value": "#333"}
+          }
+        }
+      ]
     }
   ],
   "columns": 2
@@ -415,11 +476,13 @@ const factorsSpec = {
       }
     },
     {
-      "mark": {"type": "text", "dy": -12, "fontSize": 11, "fontWeight": "bold"},
+      "mark": {"type": "text", "fontSize": 10, "fontWeight": "bold"},
       "encoding": {
         "x": {"field": "education", "type": "quantitative"},
         "y": {"field": "per_million", "type": "quantitative"},
         "text": {"field": "country", "type": "nominal"},
+        "dx": {"value": 8},
+        "dy": {"value": -5},
         "color": {"value": "#333"}
       }
     }
@@ -476,11 +539,13 @@ const taxSpec = {
       }
     },
     {
-      "mark": {"type": "text", "dy": -12, "fontSize": 11, "fontWeight": "bold"},
+      "mark": {"type": "text", "fontSize": 10, "fontWeight": "bold"},
       "encoding": {
         "x": {"field": "tax_rate", "type": "quantitative"},
         "y": {"field": "per_million", "type": "quantitative"},
         "text": {"field": "country", "type": "nominal"},
+        "dx": {"value": 8},
+        "dy": {"value": -5},
         "color": {"value": "#333"}
       }
     }
