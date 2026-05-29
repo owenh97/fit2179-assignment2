@@ -103,13 +103,6 @@ vegaEmbed('#malaysia_map', {
     "fill": "#c8e4f0",
     "stroke": null
   },
-  "params": [
-    {
-      "name": "grid",
-      "select": "interval",
-      "bind": "scales"
-    }
-  ],
   "projection": {
     "type": "mercator",
     "center": [109.5, 3.8],
@@ -206,13 +199,6 @@ vegaEmbed('#australia_map', {
     "fill": "#c8e4f0",
     "stroke": null
   },
-  "params": [
-    {
-      "name": "grid",
-      "select": "interval",
-      "bind": "scales"
-    }
-  ],
   "projection": {
     "type": "mercator",
     "center": [134, -28],
