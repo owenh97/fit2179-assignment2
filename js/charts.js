@@ -116,7 +116,7 @@ vegaEmbed('#malaysia_map', {
           "encoding": {
             "longitude": {"field": "lon", "type": "quantitative"},
             "latitude": {"field": "lat", "type": "quantitative"},
-            "size": {"field": "billionaires", "type": "quantitative", "scale": {"range": [400, 2500]}, "legend": null},
+            "size": {"field": "billionaires", "type": "quantitative", "scale": {"range": [4000, 60000]}, "legend": null},
             "color": {"field": "billionaires", "type": "quantitative", "scale": {"scheme": "greens"}, "legend": null}
           }
         }
@@ -190,7 +190,7 @@ vegaEmbed('#australia_map', {
           "encoding": {
             "longitude": {"field": "lon", "type": "quantitative"},
             "latitude": {"field": "lat", "type": "quantitative"},
-            "size": {"field": "billionaires", "type": "quantitative", "scale": {"range": [600, 3500]}, "legend": null},
+            "size": {"field": "billionaires", "type": "quantitative", "scale": {"range": [10000, 180000]}, "legend": null},
             "color": {"field": "billionaires", "type": "quantitative", "scale": {"scheme": "greens"}, "legend": null}
           }
         }
