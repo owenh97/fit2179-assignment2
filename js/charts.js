@@ -83,10 +83,18 @@ vegaEmbed('#map_chart', {
 
 
 // ─── CHART 2: Malaysia Choropleth Map ───
+// Layer 1: Ocean background
+// Layer 2: Accurate country coastline from world-atlas 10m (Natural Earth)
+// Layer 3: State fills from our TopoJSON (choropleth by billionaire count)
+// Layer 4: State borders mesh
+// Layer 5: City labels
+// Layer 6: Billionaire dots
 vegaEmbed('#malaysia_map', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Malaysian Billionaires by State",
-            "subtitle": "State colour = billionaire count  ·  Circle = individual billionaire  ·  Size = wealth (USD B)  ·  Source: Forbes 2025"},
+  "title": {
+    "text": "Malaysian Billionaires by State",
+    "subtitle": "State colour = billionaire count  ·  Circle = individual billionaire  ·  Size = wealth (USD B)  ·  Source: Forbes 2025"
+  },
   "width": 860, "height": 480,
   "view": {"fill": "#c8e4f0", "stroke": null},
   "projection": {"type": "mercator", "center": [108.5, 3.8], "scale": 2400},
@@ -96,15 +104,25 @@ vegaEmbed('#malaysia_map', {
       "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}
     },
     {
-      "data": {"url": "data/malaysia_states.json", "format": {"type": "json", "property": "features"}},
-      "mark": {"type": "geoshape", "stroke": "#a8977a", "strokeWidth": 1.2},
+      "data": {
+        "url": "data/malaysia_country_10m.json",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {"type": "geoshape", "fill": "#e0d8c0", "stroke": null}
+    },
+    {
+      "data": {
+        "url": "data/malaysia_topo.json",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "mark": {"type": "geoshape", "stroke": "#9a8860", "strokeWidth": 0.8, "fillOpacity": 0.85},
       "encoding": {
         "color": {
           "field": "properties.billionaires",
           "type": "quantitative",
           "title": "Billionaires",
           "scale": {"scheme": "greens", "domain": [0, 14]},
-          "legend": {"orient": "bottom-left", "title": "Billionaires per State"}
+          "legend": {"orient": "bottom-left", "title": "Billionaires per State", "gradientLength": 100}
         },
         "tooltip": [
           {"field": "properties.name", "title": "State"},
@@ -114,13 +132,13 @@ vegaEmbed('#malaysia_map', {
     },
     {
       "data": {"values": [
-        {"label": "Kuala Lumpur", "lat": 3.17, "lon": 101.69},
-        {"label": "Penang",       "lat": 5.46, "lon": 100.33},
-        {"label": "Johor Bahru",  "lat": 1.52, "lon": 103.74},
-        {"label": "Kota Kinabalu","lat": 5.98, "lon": 116.08},
-        {"label": "Kuching",      "lat": 1.56, "lon": 110.34}
+        {"label": "Kuala Lumpur", "lat": 3.17,  "lon": 101.69},
+        {"label": "Penang",       "lat": 5.46,  "lon": 100.33},
+        {"label": "Johor Bahru",  "lat": 1.54,  "lon": 103.75},
+        {"label": "Kota Kinabalu","lat": 5.98,  "lon": 116.08},
+        {"label": "Kuching",      "lat": 1.56,  "lon": 110.34}
       ]},
-      "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#4a3a1e", "dy": -10},
+      "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#4a3a1e", "dy": -10, "font": "Inter, sans-serif"},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude":  {"field": "lat", "type": "quantitative"},
@@ -129,14 +147,14 @@ vegaEmbed('#malaysia_map', {
     },
     {
       "data": {"url": "data/malaysia_billionaires.csv"},
-      "mark": {"type": "circle", "opacity": 0.88, "stroke": "#ffffff", "strokeWidth": 1.8},
+      "mark": {"type": "circle", "opacity": 0.90, "stroke": "#ffffff", "strokeWidth": 1.8},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude":  {"field": "lat", "type": "quantitative"},
         "size": {
           "field": "wealth", "type": "quantitative", "title": "Wealth (USD B)",
-          "scale": {"range": [60, 1400], "type": "sqrt"},
-          "legend": {"orient": "bottom-right", "values": [1,3,6,9,12]}
+          "scale": {"range": [60, 1200], "type": "sqrt"},
+          "legend": {"orient": "bottom-right", "values": [1,3,6,9,12], "title": "Wealth (USD B)"}
         },
         "color": {
           "field": "industry", "type": "nominal", "title": "Industry",
@@ -158,8 +176,10 @@ vegaEmbed('#malaysia_map', {
 // ─── CHART 3: Australia Choropleth Map ───
 vegaEmbed('#australia_map', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Australian Billionaires by State",
-            "subtitle": "State colour = billionaire count  ·  Circle = individual billionaire  ·  Size = wealth (USD B)  ·  Source: Forbes 2025"},
+  "title": {
+    "text": "Australian Billionaires by State",
+    "subtitle": "State colour = billionaire count  ·  Circle = individual billionaire  ·  Size = wealth (USD B)  ·  Source: Forbes 2025"
+  },
   "width": 860, "height": 480,
   "view": {"fill": "#c8e4f0", "stroke": null},
   "projection": {"type": "mercator", "center": [134, -28], "scale": 680},
@@ -169,15 +189,25 @@ vegaEmbed('#australia_map', {
       "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}
     },
     {
-      "data": {"url": "data/australia_states.json", "format": {"type": "json", "property": "features"}},
-      "mark": {"type": "geoshape", "stroke": "#a8977a", "strokeWidth": 1.2},
+      "data": {
+        "url": "data/australia_country_10m.json",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {"type": "geoshape", "fill": "#e0d8c0", "stroke": null}
+    },
+    {
+      "data": {
+        "url": "data/australia_topo.json",
+        "format": {"type": "topojson", "feature": "states"}
+      },
+      "mark": {"type": "geoshape", "stroke": "#9a8860", "strokeWidth": 0.8, "fillOpacity": 0.85},
       "encoding": {
         "color": {
           "field": "properties.billionaires",
           "type": "quantitative",
           "title": "Billionaires",
           "scale": {"scheme": "greens", "domain": [0, 15]},
-          "legend": {"orient": "bottom-left", "title": "Billionaires per State"}
+          "legend": {"orient": "bottom-left", "title": "Billionaires per State", "gradientLength": 100}
         },
         "tooltip": [
           {"field": "properties.name", "title": "State"},
@@ -195,7 +225,7 @@ vegaEmbed('#australia_map', {
         {"label": "Adelaide", "lat": -34.70, "lon": 138.60},
         {"label": "Darwin",   "lat": -12.20, "lon": 130.84}
       ]},
-      "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#4a3a1e", "dy": -10},
+      "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#4a3a1e", "dy": -10, "font": "Inter, sans-serif"},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude":  {"field": "lat", "type": "quantitative"},
@@ -204,14 +234,14 @@ vegaEmbed('#australia_map', {
     },
     {
       "data": {"url": "data/australia_billionaires.csv"},
-      "mark": {"type": "circle", "opacity": 0.88, "stroke": "#ffffff", "strokeWidth": 1.8},
+      "mark": {"type": "circle", "opacity": 0.90, "stroke": "#ffffff", "strokeWidth": 1.8},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude":  {"field": "lat", "type": "quantitative"},
         "size": {
           "field": "wealth", "type": "quantitative", "title": "Wealth (USD B)",
-          "scale": {"range": [60, 2000], "type": "sqrt"},
-          "legend": {"orient": "bottom-right", "values": [3,8,15,20,29]}
+          "scale": {"range": [60, 1800], "type": "sqrt"},
+          "legend": {"orient": "bottom-right", "values": [3,8,15,20,29], "title": "Wealth (USD B)"}
         },
         "color": {
           "field": "industry", "type": "nominal", "title": "Industry",
@@ -228,7 +258,6 @@ vegaEmbed('#australia_map', {
     }
   ]
 }, embedOpts);
-
 // ─── CHART 4: Industry Grouped Bar ───────────────────
 vegaEmbed('#industry_chart', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
