@@ -82,19 +82,13 @@ vegaEmbed('#map_chart', {
 }, embedOpts);
 
 
-// ─── CHART 2: Malaysia Choropleth + Symbol overlay ───
-// Uses inline GeoJSON rectangles approximating Malaysia states
-// since a reliable Malaysia TopoJSON CDN is unavailable
-// We use a proportional symbol map zoomed tightly to Malaysia
-// with state-level choropleth effect via background rectangles
-
+// ─── CHART 2: Malaysia Map ───
 vegaEmbed('#malaysia_map', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Malaysian Billionaires by State",
-            "subtitle": "Colour intensity = billionaires per state  ·  Circle = individual billionaire (size = wealth)  ·  Source: Forbes 2025"},
-  "width": 820, "height": 460,
+  "title": {"text": "Malaysian Billionaires by Location",
+            "subtitle": "Circle size = wealth (USD B)  ·  Colour = industry  ·  Hover for details  ·  Source: Forbes 2025"},
+  "width": 860, "height": 480,
   "view": {"fill": "#c8e4f0", "stroke": null},
-  "params": [{"name": "grid", "select": "interval", "bind": "scales"}],
   "projection": {"type": "mercator", "center": [109.5, 3.8], "scale": 2200},
   "layer": [
     {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0"}},
@@ -161,14 +155,13 @@ vegaEmbed('#malaysia_map', {
 }, embedOpts);
 
 
-// ─── CHART 3: Australia Choropleth + Symbol overlay ──
+// ─── CHART 3: Australia Map ───
 vegaEmbed('#australia_map', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Australian Billionaires by State",
-            "subtitle": "Colour intensity = state wealth cluster  ·  Circle = individual billionaire (size = wealth)  ·  Source: Forbes 2025"},
-  "width": 820, "height": 460,
+  "title": {"text": "Australian Billionaires by Location",
+            "subtitle": "Circle size = wealth (USD B)  ·  Colour = industry  ·  Hover for details  ·  Source: Forbes 2025"},
+  "width": 860, "height": 480,
   "view": {"fill": "#c8e4f0", "stroke": null},
-  "params": [{"name": "grid", "select": "interval", "bind": "scales"}],
   "projection": {"type": "mercator", "center": [134, -28], "scale": 700},
   "layer": [
     {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0"}},
