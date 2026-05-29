@@ -6,30 +6,52 @@ const mapSpec = {
   "title": {
     "text": "Global Distribution of Billionaires",
     "subtitle": "Circle size = number of billionaires | Hover over circles for details | Source: Billionaires Statistics Dataset 2023",
-    "fontSize": 16, "subtitleFontSize": 11, "anchor": "start"
+    "fontSize": 18, "subtitleFontSize": 12, "anchor": "middle"
   },
-  "width": 750,
-  "height": 430,
-  "view": {"fill": "#d6eaf8"},
+  "width": 960,
+  "height": 500,
+  "view": {"fill": "#c9e8f5", "stroke": null},
   "projection": {"type": "naturalEarth1"},
   "layer": [
+    {
+      "data": {"sphere": {}},
+      "mark": {"type": "geoshape", "fill": "#c9e8f5", "stroke": null}
+    },
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
+        "format": {"type": "topojson", "feature": "land"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#d4c5a9",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.4
+      }
+    },
     {
       "data": {
         "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
         "format": {"type": "topojson", "feature": "countries"}
       },
-      "mark": {"type": "geoshape", "fill": "#e8e8e8", "stroke": "#ffffff", "strokeWidth": 0.5}
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "#ffffff",
+        "strokeWidth": 0.3
+      }
     },
     {
       "data": {"url": "data/map_data.csv"},
-      "mark": {"type": "circle", "opacity": 0.75, "tooltip": true},
+      "mark": {"type": "circle", "opacity": 0.8, "tooltip": true},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude": {"field": "lat", "type": "quantitative"},
         "size": {
-          "field": "billionaire_count", "type": "quantitative",
+          "field": "billionaire_count",
+          "type": "quantitative",
           "title": "No. of Billionaires",
-          "scale": {"range": [30, 2500]},
+          "scale": {"range": [30, 3000]},
           "legend": {
             "orient": "bottom-left",
             "title": "No. of Billionaires",
@@ -39,8 +61,12 @@ const mapSpec = {
           }
         },
         "color": {
-          "field": "billionaire_count", "type": "quantitative",
-          "scale": {"scheme": "orangered"},
+          "field": "billionaire_count",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "orangered",
+            "domain": [1, 754]
+          },
           "legend": null
         },
         "tooltip": [
