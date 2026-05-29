@@ -645,3 +645,102 @@ vegaEmbed('#top_chart', {
     ]
   }
 }, embedOpts);
+
+// ─────────────────────────────────────────────────────
+// CHART 13 — Slope Chart: Billionaire Count 2023 vs 2025
+// ─────────────────────────────────────────────────────
+vegaEmbed('#slope_chart', {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Billionaire Count: 2023 vs 2025",
+    "subtitle": "Each line = one country  ·  Highlighted: Malaysia & Australia  ·  Source: Billionaires Statistics Dataset 2023 & Forbes 2025"
+  },
+  "width": "container", "height": 360,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "data": {"url": "data/slope_data.csv"},
+  "layer": [
+    {
+      "mark": {"type": "line", "strokeWidth": 1.4, "point": false},
+      "transform": [{"filter": "datum.highlight === 'Other'"}],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal", "title": null,
+              "axis": {"labelFontSize": 13, "labelFontWeight": 700,
+                       "domainColor": "#ccc", "tickColor": "#ccc"}},
+        "y": {"field": "count", "type": "quantitative", "title": "Number of Billionaires",
+              "axis": {"gridColor": C.grid}},
+        "detail": {"field": "country", "type": "nominal"},
+        "color": {"value": "#d8d0c4"},
+        "opacity": {"value": 0.7}
+      }
+    },
+    {
+      "mark": {"type": "point", "size": 55, "filled": true},
+      "transform": [{"filter": "datum.highlight === 'Other'"}],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "count", "type": "quantitative"},
+        "detail": {"field": "country", "type": "nominal"},
+        "color": {"value": "#d8d0c4"}
+      }
+    },
+    {
+      "mark": {"type": "line", "strokeWidth": 3},
+      "transform": [{"filter": "datum.highlight !== 'Other'"}],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "count", "type": "quantitative"},
+        "detail": {"field": "country", "type": "nominal"},
+        "color": {
+          "field": "highlight", "type": "nominal",
+          "scale": {"domain": ["Malaysia","Australia"], "range": [C.gold, C.green]},
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {"type": "point", "size": 90, "filled": true, "stroke": C.white, "strokeWidth": 1.5},
+      "transform": [{"filter": "datum.highlight !== 'Other'"}],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "count", "type": "quantitative"},
+        "color": {
+          "field": "highlight", "type": "nominal",
+          "scale": {"domain": ["Malaysia","Australia"], "range": [C.gold, C.green]}
+        },
+        "tooltip": [
+          {"field": "country", "title": "Country"},
+          {"field": "year",    "title": "Year"},
+          {"field": "count",   "title": "Billionaires"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 11, "fontWeight": 700},
+      "transform": [
+        {"filter": "datum.year === '2025' && datum.highlight !== 'Other'"}
+      ],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "count", "type": "quantitative"},
+        "text": {"field": "country", "type": "nominal"},
+        "color": {
+          "field": "highlight", "type": "nominal",
+          "scale": {"domain": ["Malaysia","Australia"], "range": [C.gold, C.green]},
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "right", "dx": -10, "fontSize": 10, "fontWeight": 600, "fill": "#aaa"},
+      "transform": [
+        {"filter": "datum.year === '2023' && datum.highlight === 'Other'"}
+      ],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "count", "type": "quantitative"},
+        "text": {"field": "country", "type": "nominal"},
+        "color": {"value": "#aaaaaa"}
+      }
+    }
+  ]
+}, embedOpts);
