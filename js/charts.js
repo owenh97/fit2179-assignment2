@@ -88,67 +88,48 @@ vegaEmbed('#map_chart', {
 // We use a proportional symbol map zoomed tightly to Malaysia
 // with state-level choropleth effect via background rectangles
 
-// ==========================================
-// CHART 2: MALAYSIA MAP SECTION
-// ==========================================
 vegaEmbed('#malaysia_map', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Malaysian Billionaires by State",
-    "subtitle": "Colour intensity = billionaires per state  ·  Circle = individual billionaire (size = wealth)  ·  Source: Forbes 2025"
-  },
-  "width": 820,
-  "height": 460,
-  "view": {
-    "fill": "#c8e4f0",
-    "stroke": null
-  },
-  "projection": {
-    "type": "mercator",
-    "center": [109.5, 3.8],
-    "scale": 2200
-  },
+  "title": {"text": "Malaysian Billionaires by State",
+            "subtitle": "Colour intensity = billionaires per state  ·  Circle = individual billionaire (size = wealth)  ·  Source: Forbes 2025"},
+  "width": 820, "height": 460,
+  "view": {"fill": "#c8e4f0", "stroke": null},
+  "params": [{"name": "grid", "select": "interval", "bind": "scales"}],
+  "projection": {"type": "mercator", "center": [109.5, 3.8], "scale": 2200},
   "layer": [
+    {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0"}},
+    {"data": {"url": "https://unpkg.com/world-atlas@2/countries-50m.json",
+              "format": {"type": "topojson", "feature": "land"}},
+     "mark": {"type": "geoshape", "fill": "#e8e0c8", "stroke": "#c8b98a", "strokeWidth": 1.0}},
+    {"data": {"url": "https://unpkg.com/world-atlas@2/countries-50m.json",
+              "format": {"type": "topojson", "feature": "countries"}},
+     "mark": {"type": "geoshape", "fill": null, "stroke": "#c8b98a", "strokeWidth": 0.5}},
     {
-      "data": {
-        "url": "https://unpkg.com/world-atlas@2/countries-50m.json",
-        "format": {"type": "topojson", "feature": "land"}
-      },
-      "mark": {"type": "geoshape", "fill": "#e8e0c8", "stroke": "#c8b98a", "strokeWidth": 1.0}
+      "data": {"values": [
+        {"region": "Kuala Lumpur & Selangor", "lat": 3.14, "lon": 101.69, "billionaires": 17, "wealth": 49.4, "note": "Financial & industrial hub"},
+        {"region": "Penang",                  "lat": 5.41, "lon": 100.33, "billionaires": 1,  "wealth": 4.2,  "note": "Manufacturing & trade"},
+        {"region": "Johor Bahru",             "lat": 1.49, "lon": 103.74, "billionaires": 1,  "wealth": 3.7,  "note": "Food & beverage"}
+      ]},
+      "layer": [
+        {
+          "mark": {"type": "circle", "opacity": 0.18, "stroke": null},
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "size": {"field": "billionaires", "type": "quantitative", "scale": {"range": [4000, 60000]}, "legend": null},
+            "color": {"field": "billionaires", "type": "quantitative", "scale": {"scheme": "greens"}, "legend": null}
+          }
+        }
+      ]
     },
     {
-      "data": {
-        "url": "https://unpkg.com/world-atlas@2/countries-50m.json",
-        "format": {"type": "topojson", "feature": "countries"}
-      },
-      "mark": {"type": "geoshape", "fill": null, "stroke": "#c8b98a", "strokeWidth": 0.5}
-    },
-    {
-      "data": {
-        "values": [
-          {"region": "Kuala Lumpur & Selangor", "lat": 3.14, "lon": 101.69, "billionaires": 17, "wealth": 49.4, "note": "Financial & industrial hub"},
-          {"region": "Penang",                  "lat": 5.41, "lon": 100.33, "billionaires": 1,  "wealth": 4.2,  "note": "Manufacturing & trade"},
-          {"region": "Johor Bahru",             "lat": 1.49, "lon": 103.74, "billionaires": 1,  "wealth": 3.7,  "note": "Food & beverage"}
-        ]
-      },
-      "mark": {"type": "circle", "opacity": 0.18, "stroke": null},
-      "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "size": {"field": "billionaires", "type": "quantitative", "scale": {"range": [4000, 60000]}, "legend": null},
-        "color": {"field": "billionaires", "type": "quantitative", "scale": {"scheme": "greens"}, "legend": null}
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {"label": "Kuala Lumpur", "lat": 3.16, "lon": 101.69},
-          {"label": "Penang",       "lat": 5.45, "lon": 100.33},
-          {"label": "Johor Bahru",  "lat": 1.52, "lon": 103.74},
-          {"label": "Kota Kinabalu","lat": 5.98, "lon": 116.07},
-          {"label": "Kuching",      "lat": 1.55, "lon": 110.34}
-        ]
-      },
+      "data": {"values": [
+        {"label": "Kuala Lumpur", "lat": 3.16,  "lon": 101.69},
+        {"label": "Penang",       "lat": 5.45,  "lon": 100.33},
+        {"label": "Johor Bahru",  "lat": 1.52,  "lon": 103.74},
+        {"label": "Kota Kinabalu","lat": 5.98,  "lon": 116.07},
+        {"label": "Kuching",      "lat": 1.55,  "lon": 110.34}
+      ]},
       "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#5a4a2a", "dy": -14},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
@@ -161,17 +142,13 @@ vegaEmbed('#malaysia_map', {
       "mark": {"type": "circle", "opacity": 0.90, "stroke": "#ffffff", "strokeWidth": 1.8},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "size": {
-          "field": "wealth", "type": "quantitative", "title": "Wealth (USD B)",
-          "scale": {"range": [180, 2800], "type": "sqrt"},
-          "legend": {"orient": "bottom-right", "values": [1, 3, 6, 9, 12], "title": "Wealth (USD B)"}
-        },
-        "color": {
-          "field": "industry", "type": "nominal", "title": "Industry",
-          "scale": {"domain": industryDomain, "range": industryRange},
-          "legend": {"orient": "right", "labelLimit": 180}
-        },
+        "latitude":  {"field": "lat", "type": "quantitative"},
+        "size": {"field": "wealth", "type": "quantitative", "title": "Wealth (USD B)",
+                 "scale": {"range": [180, 2800], "type": "sqrt"},
+                 "legend": {"orient": "bottom-right", "values": [1,3,6,9,12], "title": "Wealth (USD B)"}},
+        "color": {"field": "industry", "type": "nominal", "title": "Industry",
+                  "scale": {"domain": industryDomain, "range": industryRange},
+                  "legend": {"orient": "right", "labelLimit": 180}},
         "tooltip": [
           {"field": "name",     "title": "Name"},
           {"field": "city",     "title": "City"},
@@ -184,68 +161,50 @@ vegaEmbed('#malaysia_map', {
 }, embedOpts);
 
 
-// ==========================================
-// CHART 3: AUSTRALIA MAP SECTION
-// ==========================================
+// ─── CHART 3: Australia Choropleth + Symbol overlay ──
 vegaEmbed('#australia_map', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Australian Billionaires by State",
-    "subtitle": "Colour intensity = state wealth cluster  ·  Circle = individual billionaire (size = wealth)  ·  Source: Forbes 2025"
-  },
-  "width": 820,
-  "height": 460,
-  "view": {
-    "fill": "#c8e4f0",
-    "stroke": null
-  },
-  "projection": {
-    "type": "mercator",
-    "center": [134, -28],
-    "scale": 700
-  },
+  "title": {"text": "Australian Billionaires by State",
+            "subtitle": "Colour intensity = state wealth cluster  ·  Circle = individual billionaire (size = wealth)  ·  Source: Forbes 2025"},
+  "width": 820, "height": 460,
+  "view": {"fill": "#c8e4f0", "stroke": null},
+  "params": [{"name": "grid", "select": "interval", "bind": "scales"}],
+  "projection": {"type": "mercator", "center": [134, -28], "scale": 700},
   "layer": [
+    {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0"}},
+    {"data": {"url": "https://unpkg.com/world-atlas@2/countries-50m.json",
+              "format": {"type": "topojson", "feature": "land"}},
+     "mark": {"type": "geoshape", "fill": "#e8e0c8", "stroke": "#c8b98a", "strokeWidth": 1.0}},
+    {"data": {"url": "https://unpkg.com/world-atlas@2/countries-50m.json",
+              "format": {"type": "topojson", "feature": "countries"}},
+     "mark": {"type": "geoshape", "fill": null, "stroke": "#c8b98a", "strokeWidth": 0.5}},
     {
-      "data": {
-        "url": "https://unpkg.com/world-atlas@2/countries-50m.json",
-        "format": {"type": "topojson", "feature": "land"}
-      },
-      "mark": {"type": "geoshape", "fill": "#e8e0c8", "stroke": "#c8b98a", "strokeWidth": 1.0}
+      "data": {"values": [
+        {"region": "New South Wales", "lat": -33.87, "lon": 151.21, "billionaires": 15, "wealth": 107.2},
+        {"region": "Victoria",        "lat": -37.81, "lon": 144.96, "billionaires": 2,  "wealth": 11.9},
+        {"region": "Western Australia","lat": -25.0,  "lon": 118.0,  "billionaires": 3,  "wealth": 51.4}
+      ]},
+      "layer": [
+        {
+          "mark": {"type": "circle", "opacity": 0.15, "stroke": null},
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "size": {"field": "billionaires", "type": "quantitative", "scale": {"range": [10000, 180000]}, "legend": null},
+            "color": {"field": "billionaires", "type": "quantitative", "scale": {"scheme": "greens"}, "legend": null}
+          }
+        }
+      ]
     },
     {
-      "data": {
-        "url": "https://unpkg.com/world-atlas@2/countries-50m.json",
-        "format": {"type": "topojson", "feature": "countries"}
-      },
-      "mark": {"type": "geoshape", "fill": null, "stroke": "#c8b98a", "strokeWidth": 0.5}
-    },
-    {
-      "data": {
-        "values": [
-          {"region": "New South Wales", "lat": -33.87, "lon": 151.21, "billionaires": 15, "wealth": 107.2},
-          {"region": "Victoria",        "lat": -37.81, "lon": 144.96, "billionaires": 2,  "wealth": 11.9},
-          {"region": "Western Australia","lat": -25.0,  "lon": 118.0,  "billionaires": 3,  "wealth": 51.4}
-        ]
-      },
-      "mark": {"type": "circle", "opacity": 0.15, "stroke": null},
-      "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "size": {"field": "billionaires", "type": "quantitative", "scale": {"range": [10000, 180000]}, "legend": null},
-        "color": {"field": "billionaires", "type": "quantitative", "scale": {"scheme": "greens"}, "legend": null}
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {"label": "Perth",    "lat": -31.95, "lon": 115.86},
-          {"label": "Sydney",   "lat": -33.60, "lon": 151.21},
-          {"label": "Melbourne","lat": -37.60, "lon": 144.96},
-          {"label": "Brisbane", "lat": -27.30, "lon": 153.02},
-          {"label": "Adelaide", "lat": -34.70, "lon": 138.60},
-          {"label": "Darwin",   "lat": -12.20, "lon": 130.84}
-        ]
-      },
+      "data": {"values": [
+        {"label": "Perth",    "lat": -31.95, "lon": 115.86},
+        {"label": "Sydney",   "lat": -33.60, "lon": 151.21},
+        {"label": "Melbourne","lat": -37.60, "lon": 144.96},
+        {"label": "Brisbane", "lat": -27.30, "lon": 153.02},
+        {"label": "Adelaide", "lat": -34.70, "lon": 138.60},
+        {"label": "Darwin",   "lat": -12.20, "lon": 130.84}
+      ]},
       "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#5a4a2a", "dy": -14},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
@@ -258,17 +217,13 @@ vegaEmbed('#australia_map', {
       "mark": {"type": "circle", "opacity": 0.90, "stroke": "#ffffff", "strokeWidth": 1.8},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "size": {
-          "field": "wealth", "type": "quantitative", "title": "Wealth (USD B)",
-          "scale": {"range": [180, 4200], "type": "sqrt"},
-          "legend": {"orient": "bottom-right", "values": [3, 8, 15, 20, 29], "title": "Wealth (USD B)"}
-        },
-        "color": {
-          "field": "industry", "type": "nominal", "title": "Industry",
-          "scale": {"domain": industryDomain, "range": industryRange},
-          "legend": {"orient": "right", "labelLimit": 180}
-        },
+        "latitude":  {"field": "lat", "type": "quantitative"},
+        "size": {"field": "wealth", "type": "quantitative", "title": "Wealth (USD B)",
+                 "scale": {"range": [180, 4200], "type": "sqrt"},
+                 "legend": {"orient": "bottom-right", "values": [3,8,15,20,29], "title": "Wealth (USD B)"}},
+        "color": {"field": "industry", "type": "nominal", "title": "Industry",
+                  "scale": {"domain": industryDomain, "range": industryRange},
+                  "legend": {"orient": "right", "labelLimit": 180}},
         "tooltip": [
           {"field": "name",     "title": "Name"},
           {"field": "state",    "title": "State"},
