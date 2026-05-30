@@ -287,45 +287,71 @@
   </div>
 
   <!-- ── S05: National Factors ── -->
-  <div class="section">
-    <div class="section-label">Section 05 · National Factors</div>
-    <h2>Does National Wealth Matter?</h2>
-    <div class="pure-g">
-      <div class="pure-u-1-3">
-        <div class="narrative">
-          <p>GDP alone does not determine how many billionaires a country produces.  <strong style="color:#1a1a1a;">Singapore</strong>, with a much smaller economy than Malaysia, houses <strong style="color:#1a1a1a;">46 billionaires</strong> — more than four times Malaysia's count.</p>
-          <p>Despite decades of growth, Malaysia remains an outlier compared to peers of similar GDP size.</p>
-        </div>
+<div class="section">
+  <div class="section-label">Section 05 · National Factors</div>
+  <h2>Does National Wealth Matter?</h2>
+  <div class="pure-g">
+    <div class="pure-u-1-3">
+      <div class="narrative">
+        <p>GDP alone does not determine how many billionaires a country produces.  <strong style="color:#1a1a1a;">Singapore</strong>, with a much smaller economy than Malaysia, houses <strong style="color:#1a1a1a;">46 billionaires</strong> — more than four times Malaysia's count.</p>
+        <p>Despite decades of growth, Malaysia remains an outlier compared to peers of similar GDP size.</p>
       </div>
-      <div class="pure-u-2-3">
-        <div class="card">
-          <div class="chart-container">
+    </div>
+    <div class="pure-u-2-3">
+      <div class="card">
+        <div class="chart-container">
+          <!-- WRAPPER START: Handles the absolute positioning of the card overlay -->
+          <div class="chart-wrapper" style="position: relative; display: inline-block; width: 100%;">
+            
             <div id="bubble_chart"></div>
+            
+            <!-- THE IN-CHART STORYTELLING CARD -->
+            <div class="diagram-card" style="
+              position: absolute; 
+              top: 22%; 
+              left: 15%; 
+              background-color: #f4f0ea; 
+              border-radius: 8px; 
+              padding: 12px; 
+              box-shadow: 0 2px 8px rgba(0,0,0,0.04); 
+              font-family: 'Montserrat', sans-serif; 
+              z-index: 10; 
+              pointer-events: none; 
+              width: 220px;
+            ">
+              <span class="card-title" style="font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #7a7a7a; display: block; margin-bottom: 4px;">The Outlier</span>
+              <p class="card-body" style="font-size: 11px; line-height: 1.4; color: #4a4a4a; margin: 0;">
+                Singapore defies the trend, generating outsized billionaire wealth despite a smaller economic footprint.
+              </p>
+            </div>
+
           </div>
+          <!-- WRAPPER END -->
         </div>
       </div>
     </div>
-    <div class="pure-g" style="margin-top: 36px;">
-      <div class="pure-u-1-2">
-        <div class="card">
-          <div class="chart-container">
-            <div id="factors_chart"></div>
-          </div>
-        </div>
-      </div>
-      <div class="pure-u-1-2">
-        <div class="card">
-          <div class="chart-container">
-            <div id="tax_chart"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p style="text-align:center; max-width:780px; margin:20px auto 0;
-              font-size:0.93em; font-weight:300; color:#555; line-height:1.75;">
-      Singapore is an outlier with <strong style="color:#1a1a1a;">8 billionaires per million people</strong> despite a moderate tax rate. Malaysia's low tertiary education enrollment of <strong style="color:#1a1a1a;">45%</strong> compared to Australia's <strong style="color:#1a1a1a;">113%</strong> may partly explain the gap.
-    </p>
   </div>
+  <div class="pure-g" style="margin-top: 36px;">
+    <div class="pure-u-1-2">
+      <div class="card">
+        <div class="chart-container">
+          <div id="factors_chart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="pure-u-1-2">
+      <div class="card">
+        <div class="chart-container">
+          <div id="tax_chart"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center; max-width:780px; margin:20px auto 0;
+            font-size:0.93em; font-weight:300; color:#555; line-height:1.75;">
+    Singapore is an outlier with <strong style="color:#1a1a1a;">8 billionaires per million people</strong> despite a moderate tax rate. Malaysia's low tertiary education enrollment of <strong style="color:#1a1a1a;">45%</strong> compared to Australia's <strong style="color:#1a1a1a;">113%</strong> may partly explain the gap.
+  </p>
+</div>
 
   <!-- ── S06: Age ── -->
   <div class="section">
