@@ -89,19 +89,6 @@ vegaEmbed('#malaysia_map', {
                  "scale": {"domain": [0,14], "range": ["#f7fcf5","#c7e9c0","#74c476","#238b45","#00441b"]},
                  "legend": {"orient": "bottom-left", "title": "Billionaires per State", "gradientLength": 120}},
        "tooltip": [{"field": "properties.Name", "title": "State"}, {"field": "properties.billionaires", "title": "Billionaires"}]
-     }},
-    {"data": {"values": [
-        {"label": "Kuala Lumpur", "lat": 3.17,  "lon": 101.69},
-        {"label": "Penang",       "lat": 5.46,  "lon": 100.33},
-        {"label": "Johor Bahru",  "lat": 1.54,  "lon": 103.75},
-        {"label": "Kota Kinabalu","lat": 5.98,  "lon": 116.08},
-        {"label": "Kuching",      "lat": 1.56,  "lon": 110.34}
-      ]},
-     "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#333", "dy": -8},
-     "encoding": {
-       "longitude": {"field": "lon", "type": "quantitative"},
-       "latitude":  {"field": "lat", "type": "quantitative"},
-       "text":      {"field": "label", "type": "nominal"}
      }}
   ]
 }, embedOpts);
@@ -123,12 +110,6 @@ vegaEmbed('#australia_map', {
                  "scale": {"domain": [0,15], "range": ["#f7fcf5","#c7e9c0","#74c476","#238b45","#00441b"]},
                  "legend": {"orient": "bottom-left", "title": "Billionaires per State", "gradientLength": 120}},
        "tooltip": [{"field": "properties.STATE_NAME", "title": "State"}, {"field": "properties.billionaires", "title": "Billionaires"}]
-     }},
-     "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#333", "dy": -8},
-     "encoding": {
-       "longitude": {"field": "lon", "type": "quantitative"},
-       "latitude":  {"field": "lat", "type": "quantitative"},
-       "text":      {"field": "label", "type": "nominal"}
      }}
   ]
 }, embedOpts);
