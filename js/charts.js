@@ -81,7 +81,7 @@ vegaEmbed('#malaysia_map', {
   "autosize": {"type": "fit", "contains": "padding"},
   "config": {"view": {"continuousWidth": 860, "continuousHeight": 480}},
   "view": {"fill": "#c8e4f0", "stroke": null},
-  "projection": {"type": "mercator", "center": [108.5, 3.8], "scale": 2400},
+  "projection": {"type": "mercator", "center": [109.5, 3.8], "scale": 2800},
   "layer": [
     {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}},
     {
