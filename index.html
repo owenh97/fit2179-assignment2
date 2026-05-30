@@ -83,13 +83,21 @@
 
     /* ── MAP RECT ── */
     .map-rect {
-      background: #fff; border-radius: 14px;
-      box-shadow: 0 3px 20px rgba(0,0,0,0.09);
-      width: 100%; min-height: 520px;
-      overflow: visible; padding: 16px; margin-bottom: 0;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 3px 20px rgba(0,0,0,0.09);
+    width: 100%;
+    min-height: 520px;
+    overflow: visible;
+    padding: 16px;
+    margin-bottom: 0;
+    box-sizing: border-box;
     }
-    .map-rect > div { min-height: 480px; }
-
+    .map-rect > div {
+      min-height: 480px;
+      width: 100% !important;
+    }
+    
     /* ── CARD ── */
     .card {
       background: #fff; border-radius: 12px;
@@ -184,56 +192,54 @@
   </div>
 
 <!-- ── S02: Malaysia Map ── -->
-  <div class="section-local">
-    <div class="section-label">Section 02 · Malaysia</div>
-    <h2>Malaysia's Billionaire Landscape</h2>
-    <div class="green-divider-left"></div>
-    <p class="lead">Malaysia's billionaires are overwhelmingly concentrated in the Klang Valley — Kuala Lumpur and Selangor dominate. Wealth is as geographically concentrated as it is economically.</p>
-    
-    <!-- FLEX METHOD: Centers the fixed-width map canvas on your screen dynamically while keeping the card container fully symmetric -->
-    <div class="map-rect" style="display: flex; justify-content: center; align-items: center; width: 100%; box-sizing: border-box;">
-      <div id="malaysia_map" style="min-height:480px; width: 860px; display:block;"></div>
-    </div>
-    
-    <div class="pure-g" style="margin-top: 30px;">
-      <div class="pure-u-1-2">
-        <div class="narrative">
-          <p>The majority of Malaysian billionaires operate out of <strong>Kuala Lumpur and Selangor</strong>. Robert Kuok, Malaysia's wealthiest at $12.1B, built his fortune through sugar, shipping and hospitality.</p>
-        </div>
-      </div>
-      <div class="pure-u-1-2">
-        <div class="narrative">
-          <p>Unlike Australia, where billionaires span multiple states, Malaysia's wealth is heavily centralised in the western corridor of Peninsular Malaysia.</p>
-        </div>
-      </div>
-    </div>
+<div class="section-local">
+  <div class="section-label">Section 02 · Malaysia</div>
+  <h2>Malaysia's Billionaire Landscape</h2>
+  <div class="green-divider-left"></div>
+  <p class="lead">Malaysia's billionaires are overwhelmingly concentrated in the Klang Valley — Kuala Lumpur and Selangor dominate. Wealth is as geographically concentrated as it is economically.</p>
+
+  <div class="map-rect">
+    <div id="malaysia_map" style="min-height:480px; display:block; width:100%;"></div>
   </div>
 
-  <!-- ── S03: Australia Map ── -->
-  <div class="section-local">
-    <div class="section-label">Section 03 · Australia</div>
-    <h2>Australia's Billionaire Landscape</h2>
-    <div class="green-divider-left"></div>
-    <p class="lead">Australia's 47 billionaires are spread across its states — from mining magnates in Western Australia to tech founders in New South Wales and Victoria. Geography reflects industry.</p>
-    
-    <!-- FLEX METHOD: Centers the fixed-width map canvas on your screen dynamically while keeping the card container fully symmetric -->
-    <div class="map-rect" style="display: flex; justify-content: center; align-items: center; width: 100%; box-sizing: border-box;">
-      <div id="australia_map" style="min-height:480px; width: 860px; display:block;"></div>
-    </div>
-    
-    <div class="pure-g" style="margin-top: 30px;">
-      <div class="pure-u-1-2">
-        <div class="narrative">
-          <p><strong>Western Australia</strong> is home to Gina Rinehart and Andrew Forrest — both mining billionaires whose fortunes rival the GDP of small nations.</p>
-        </div>
+  <div class="pure-g" style="margin-top: 30px;">
+    <div class="pure-u-1-2">
+      <div class="narrative">
+        <p>The majority of Malaysian billionaires operate out of <strong>Kuala Lumpur and Selangor</strong>. Robert Kuok, Malaysia's wealthiest at $12.1B, built his fortune through sugar, shipping and hospitality.</p>
       </div>
-      <div class="pure-u-1-2">
-        <div class="narrative">
-          <p><strong>New South Wales</strong> houses Mike Cannon-Brookes, Scott Farquhar and Melanie Perkins — all under 50, representing a new wave of technology-driven wealth.</p>
-        </div>
+    </div>
+    <div class="pure-u-1-2">
+      <div class="narrative">
+        <p>Unlike Australia, where billionaires span multiple states, Malaysia's wealth is heavily centralised in the western corridor of Peninsular Malaysia.</p>
       </div>
     </div>
   </div>
+</div>
+
+<!-- ── S03: Australia Map ── -->
+<div class="section-local">
+  <div class="section-label">Section 03 · Australia</div>
+  <h2>Australia's Billionaire Landscape</h2>
+  <div class="green-divider-left"></div>
+  <p class="lead">Australia's 47 billionaires are spread across its states — from mining magnates in Western Australia to tech founders in New South Wales and Victoria. Geography reflects industry.</p>
+
+  <div class="map-rect">
+    <div id="australia_map" style="min-height:480px; display:block; width:100%;"></div>
+  </div>
+
+  <div class="pure-g" style="margin-top: 30px;">
+    <div class="pure-u-1-2">
+      <div class="narrative">
+        <p><strong>Western Australia</strong> is home to Gina Rinehart and Andrew Forrest — both mining billionaires whose fortunes rival the GDP of small nations.</p>
+      </div>
+    </div>
+    <div class="pure-u-1-2">
+      <div class="narrative">
+        <p><strong>New South Wales</strong> houses Mike Cannon-Brookes, Scott Farquhar and Melanie Perkins — all under 50, representing a new wave of technology-driven wealth.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ── S03.5: Change Over Time ── -->
 <div class="section">
