@@ -239,14 +239,6 @@ vegaEmbed('#bubble_chart', {
        "size": {"field": "total_worth_bn", "type": "quantitative", "scale": {"range": [40,2200], "type": "sqrt"}, "legend": null},
        "color": {"field": "highlight", "type": "nominal", "scale": {"domain": countryDomain, "range": countryRange}},
        "tooltip": [{"field":"country","title":"Country"},{"field":"billionaire_count","title":"Billionaires"},{"field":"gdp_bn","title":"GDP (USD B)","format":",.0f"},{"field":"total_worth_bn","title":"Total Wealth (USD B)","format":",.0f"}]
-     }},
-    {"transform": [{"filter": "datum.highlight !== 'Other'"}],
-     "mark": {"type": "text", "dy": -13, "fontSize": 10, "fontWeight": 600},
-     "encoding": {
-       "x": {"field": "gdp_bn", "type": "quantitative", "scale": {"type": "log"}},
-       "y": {"field": "billionaire_count", "type": "quantitative", "scale": {"type": "log"}},
-       "text": {"field": "country", "type": "nominal"},
-       "color": {"value": "#333333"}
      }}
   ]
 }, embedOpts);
