@@ -124,14 +124,6 @@ vegaEmbed('#australia_map', {
                  "legend": {"orient": "bottom-left", "title": "Billionaires per State", "gradientLength": 120}},
        "tooltip": [{"field": "properties.STATE_NAME", "title": "State"}, {"field": "properties.billionaires", "title": "Billionaires"}]
      }},
-    {"data": {"values": [
-        {"label": "Perth",    "lat": -31.95, "lon": 115.86},
-        {"label": "Sydney",   "lat": -33.60, "lon": 151.21},
-        {"label": "Melbourne","lat": -37.60, "lon": 144.96},
-        {"label": "Brisbane", "lat": -27.30, "lon": 153.02},
-        {"label": "Adelaide", "lat": -34.70, "lon": 138.60},
-        {"label": "Darwin",   "lat": -12.20, "lon": 130.84}
-      ]},
      "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#333", "dy": -8},
      "encoding": {
        "longitude": {"field": "lon", "type": "quantitative"},
