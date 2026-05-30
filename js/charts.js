@@ -81,7 +81,7 @@ vegaEmbed('#malaysia_map', {
   "autosize": {"type": "fit", "contains": "padding"},
   "config": {"view": {"continuousWidth": 860, "continuousHeight": 480}},
   "view": {"fill": "#c8e4f0", "stroke": null},
-  "projection": {"type": "mercator", "center": [107.5, 3.8], "scale": 2800},
+  "projection": {"type": "mercator", "center": [107.5, 3.8], "scale": 2850},
   "layer": [
     {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}},
     {
@@ -109,7 +109,7 @@ vegaEmbed('#australia_map', {
             "subtitle": "Colour = billionaires per state  ·  Hover for details  ·  Source: Forbes 2025"},
   "width": 860, "height": 480,
   "view": {"fill": "#c8e4f0", "stroke": null},
-  "projection": {"type": "mercator", "center": [134, -24], "scale": 580},
+  "projection": {"type": "mercator", "center": [134, -24], "scale": 590},
   "layer": [
     {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}},
     {"data": {"url": "data/australia_states.topojson", "format": {"type": "topojson", "feature": "states"}},
