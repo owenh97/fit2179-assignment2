@@ -107,9 +107,11 @@ vegaEmbed('#australia_map', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "Australian Billionaires by State",
             "subtitle": "Colour = billionaires per state  ·  Hover for details  ·  Source: Forbes 2025"},
-  "width": 860, "height": 480,
+  "width": "container", "height": 480,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "config": {"view": {"continuousWidth": 860, "continuousHeight": 480}},
   "view": {"fill": "#c8e4f0", "stroke": null},
-  "projection": {"type": "mercator", "center": [134.5, -24.5], "scale": 540},
+  "projection": {"type": "mercator", "center": [134.5, -24.5], "scale": 560},
   "layer": [
     {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}},
     {"data": {"url": "data/australia_states.topojson", "format": {"type": "topojson", "feature": "states"}},
