@@ -163,7 +163,7 @@ vegaEmbed('#australia_map', {
     {
       "data": {
         "url": "data/australia_states.topojson",
-        "format": {"type": "topojson", "feature": "austates"}
+        "format": {"type": "topojson", "feature": "states"}
       },
       "mark": {"type": "geoshape", "stroke": "#888", "strokeWidth": 0.8},
       "encoding": {
@@ -207,6 +207,28 @@ vegaEmbed('#australia_map', {
     }
   ]
 }, embedOpts);
+
+// ─── CHART 4: Industry Grouped Bar ───────────────────
+vegaEmbed('#industry_chart', {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Billionaire Industries: Malaysia vs Australia",
+            "subtitle": "Source: Forbes Billionaire List 2025"},
+  "width": "container", "height": 280,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "data": {"url": "data/industry_data.csv"},
+  "mark": {"type": "bar"},
+  "encoding": {
+    "x": {"field": "industry", "type": "nominal", "title": null, "sort": "-y",
+          "axis": {"labelAngle": -35, "labelFontSize": 10, "labelLimit": 130}},
+    "y": {"field": "count", "type": "quantitative", "title": "Billionaires",
+          "axis": {"gridColor": C.grid}},
+    "color": {"field": "country", "type": "nominal", "title": "Country",
+              "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}},
+    "xOffset": {"field": "country", "type": "nominal"},
+    "tooltip": [{"field":"country","title":"Country"},{"field":"industry","title":"Industry"},{"field":"count","title":"Billionaires"}]
+  }
+}, embedOpts);
+
 
 // ─── CHART 5: Heatmap ─────────────────────────────────
 vegaEmbed('#heatmap_chart', {
