@@ -111,7 +111,7 @@ vegaEmbed('#australia_map', {
   "autosize": {"type": "fit", "contains": "padding"},
   "config": {"view": {"continuousWidth": 860, "continuousHeight": 480}},
   "view": {"fill": "#c8e4f0", "stroke": null},
-  "projection": {"type": "mercator", "center": [134.5, -24.5], "scale": 560},
+  "projection": {"type": "mercator", "center": [134.5, -25.5], "scale": 560},
   "layer": [
     {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}},
     {"data": {"url": "data/australia_states.topojson", "format": {"type": "topojson", "feature": "states"}},
