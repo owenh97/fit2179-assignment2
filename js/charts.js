@@ -364,5 +364,3 @@ vegaEmbed('#top_chart', {
     "tooltip": [{"field":"name","title":"Name"},{"field":"country","title":"Country"},{"field":"wealth","title":"Wealth (USD B)","format":".1f"},{"field":"industry","title":"Industry"}]
   }
 }, embedOpts);
-
-<script src="js/charts.js"></script>
