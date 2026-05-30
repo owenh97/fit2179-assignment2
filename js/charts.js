@@ -185,7 +185,6 @@ vegaEmbed('#slope_chart', {
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {"url": "data/slope_data.csv"},
   "layer": [
-    // Line Layer
     {"mark": {"type": "line", "strokeWidth": 3, "point": {"filled": true, "size": 90, "stroke": C.white, "strokeWidth": 2}},
      "encoding": {
        "x": {"field": "year", "type": "ordinal", "title": null, "axis": {"labelFontSize": 14, "labelFontWeight": 700, "domainColor": "#ccc"}},
@@ -193,7 +192,6 @@ vegaEmbed('#slope_chart', {
        "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}},
        "detail": {"field": "country", "type": "nominal"}
      }},
-    // Labels 2023
     {"mark": {"type": "text", "align": "right", "dx": -14, "fontSize": 12, "fontWeight": 600},
      "transform": [{"filter": "datum.year === '2023'"}],
      "encoding": {
@@ -202,7 +200,6 @@ vegaEmbed('#slope_chart', {
        "text": {"field": "count", "type": "quantitative"},
        "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null}
      }},
-    // Labels 2025
     {"mark": {"type": "text", "align": "left", "dx": 14, "fontSize": 12, "fontWeight": 600},
      "transform": [{"filter": "datum.year === '2025'"}],
      "encoding": {
@@ -211,7 +208,6 @@ vegaEmbed('#slope_chart', {
        "text": {"field": "count", "type": "quantitative"},
        "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null}
      }},
-    // Country Headers
     {"mark": {"type": "text", "align": "left", "dx": 14, "dy": -16, "fontSize": 13, "fontWeight": 700},
      "transform": [{"filter": "datum.year === '2025'"}],
      "encoding": {
@@ -219,39 +215,7 @@ vegaEmbed('#slope_chart', {
        "y": {"field": "count", "type": "quantitative", "scale": {"domain": [0,55]}},
        "text": {"field": "country", "type": "nominal"},
        "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null}
-     }},
-    // Storytelling Line Connector Layer
-    {
-      "mark": {"type": "rule", "color": "#8c8c8c", "strokeWidth": 0.5, "strokeDash": [2, 2]},
-      "data": {"values": [{}]},
-      "encoding": {
-        "x": {"datum": "2023", "type": "ordinal"},
-        "y": {"datum": 25, "type": "quantitative"},
-        "x2": {"datum": "2025"},
-        "y2": {"datum": 21}
-      }
-    },
-    // Storytelling Text Layer
-    {
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "font": "Montserrat, sans-serif",
-        "fontSize": 10,
-        "lineHeight": 14,
-        "color": "#2c2c2c",
-        "text": [
-          "A sudden 73% surge in just",
-          "two years highlights a rapidly",
-          "shifting economic ceiling in Malaysia."
-        ]
-      },
-      "data": {"values": [{}]},
-      "encoding": {
-        "x": {"datum": "2023", "type": "ordinal"},
-        "y": {"datum": 33, "type": "quantitative"}
-      }
-    }
+     }}
   ]
 }, embedOpts);
 
@@ -264,7 +228,6 @@ vegaEmbed('#bubble_chart', {
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {"url": "data/bubble_data.csv"},
   "layer": [
-    // Base Chart Layer
     {"mark": {"type": "circle", "opacity": 0.78, "stroke": C.white, "strokeWidth": 1},
      "encoding": {
        "x": {"field": "gdp_bn", "type": "quantitative", "title": "GDP (USD Billions)",
@@ -276,41 +239,7 @@ vegaEmbed('#bubble_chart', {
        "size": {"field": "total_worth_bn", "type": "quantitative", "scale": {"range": [40,2200], "type": "sqrt"}, "legend": null},
        "color": {"field": "highlight", "type": "nominal", "scale": {"domain": countryDomain, "range": countryRange}},
        "tooltip": [{"field":"country","title":"Country"},{"field":"billionaire_count","title":"Billionaires"},{"field":"gdp_bn","title":"GDP (USD B)","format":",.0f"},{"field":"total_worth_bn","title":"Total Wealth (USD B)","format":",.0f"}]
-     }},
-    // Storytelling Line Annotation
-    {
-      "mark": {"type": "rule", "color": "#8c8c8c", "strokeWidth": 0.5, "strokeDash": [2, 2]},
-      "data": {"values": [{}]},
-      "encoding": {
-        "x": {"datum": 150, "type": "quantitative"},
-        "y": {"datum": 100, "type": "quantitative"},
-        "x2": {"datum": 450},
-        "y2": {"datum": 50}
-      }
-    },
-    // Storytelling Text Annotation
-    {
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "bottom",
-        "font": "Montserrat, sans-serif",
-        "fontSize": 10,
-        "lineHeight": 14,
-        "color": "#2c2c2c",
-        "text": [
-          "The Outlier:",
-          "Singapore defies the trend, generating",
-          "outsized billionaire wealth despite",
-          "a smaller economic footprint."
-        ]
-      },
-      "data": {"values": [{}]},
-      "encoding": {
-        "x": {"datum": 10, "type": "quantitative"},
-        "y": {"datum": 130, "type": "quantitative"}
-      }
-    }
+     }}
   ]
 }, embedOpts);
 
@@ -323,52 +252,15 @@ vegaEmbed('#age_chart', {
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {"url": "data/age_data.csv"},
   "transform": [{"calculate": "random() * 0.5 - 0.25", "as": "jitter"}],
-  "layer": [
-    // Base Chart Layer
-    {
-      "mark": {"type": "circle", "size": 65, "opacity": 0.68, "stroke": C.white, "strokeWidth": 0.5},
-      "encoding": {
-        "x": {"field": "age", "type": "quantitative", "title": "Age", "scale": {"domain": [30,95]}, "axis": {"gridColor": C.grid}},
-        "y": {"field": "jitter", "type": "quantitative", "title": null, "scale": {"domain": [-1,1]}, "axis": null},
-        "row": {"field": "country", "type": "nominal", "title": null,
-                "header": {"labelFontSize": 12, "labelFontWeight": 700, "labelColor": C.text, "labelPadding": 4}},
-        "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null},
-        "tooltip": [{"field":"personName","title":"Name"},{"field":"country","title":"Country"},{"field":"age","title":"Age"}]
-      }
-    },
-    // Storytelling Text Layer
-    {
-      "transform": [{"filter": "datum.country === 'Malaysia' && datum.age === 45"}],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "font": "Montserrat, sans-serif",
-        "fontSize": 10,
-        "lineHeight": 13,
-        "color": "#2c2c2c",
-        "dx": -10,
-        "dy": 65,
-        "text": [
-          "The Tech Generation:",
-          "Australia's wealth is actively transferring",
-          "to younger, tech-driven founders, while",
-          "Malaysia's wealth remains locked in",
-          "the older generation."
-        ]
-      },
-      "encoding": {
-        "x": {"field": "age", "type": "quantitative"}
-      }
-    },
-    // Storytelling Line Connector Layer
-    {
-      "transform": [{"filter": "datum.country === 'Malaysia' && datum.age === 45"}],
-      "mark": {"type": "rule", "color": "#8c8c8c", "strokeWidth": 0.5, "strokeDash": [2, 2], "dy": 25, "y2": 55},
-      "encoding": {
-        "x": {"field": "age", "type": "quantitative"}
-      }
-    }
-  ]
+  "mark": {"type": "circle", "size": 65, "opacity": 0.68, "stroke": C.white, "strokeWidth": 0.5},
+  "encoding": {
+    "x": {"field": "age", "type": "quantitative", "title": "Age", "scale": {"domain": [30,95]}, "axis": {"gridColor": C.grid}},
+    "y": {"field": "jitter", "type": "quantitative", "title": null, "scale": {"domain": [-1,1]}, "axis": null},
+    "row": {"field": "country", "type": "nominal", "title": null,
+            "header": {"labelFontSize": 12, "labelFontWeight": 700, "labelColor": C.text, "labelPadding": 4}},
+    "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null},
+    "tooltip": [{"field":"personName","title":"Name"},{"field":"country","title":"Country"},{"field":"age","title":"Age"}]
+  }
 }, embedOpts);
 
 // ─── CHART 9: Donuts ──────────────────────────────────
