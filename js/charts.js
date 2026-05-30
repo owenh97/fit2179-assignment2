@@ -145,52 +145,25 @@ vegaEmbed('#malaysia_map', {
 }, embedOpts);
 
 
-// ─── CHART 3: Australia Choropleth ───
+// ─── CHART 3: Australia Choropleth ───────────────────
 vegaEmbed('#australia_map', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Australian Billionaires by State",
-    "subtitle": "Colour = number of billionaires per state  ·  Hover for details  ·  Source: Forbes 2025"
-  },
+  "title": {"text": "Australian Billionaires by State",
+            "subtitle": "Colour = billionaires per state  ·  Hover for details  ·  Source: Forbes 2025"},
   "width": 860, "height": 480,
   "view": {"fill": "#c8e4f0", "stroke": null},
   "projection": {"type": "mercator", "center": [134, -28], "scale": 680},
   "layer": [
-    {
-      "data": {"sphere": {}},
-      "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}
-    },
-    {
-      "data": {
-        "url": "data/australia_states.topojson",
-        "format": {"type": "topojson", "feature": "states"}
-      },
-      "mark": {"type": "geoshape", "stroke": "#888", "strokeWidth": 0.8},
-      "encoding": {
-        "color": {
-          "field": "properties.billionaires",
-          "type": "quantitative",
-          "title": "Billionaires",
-          "scale": {
-            "domain": [0, 15],
-            "range": ["#f7fcf5", "#c7e9c0", "#74c476", "#238b45", "#00441b"]
-          },
-          "legend": {
-            "orient": "bottom-left",
-            "title": "Billionaires per State",
-            "titleFontSize": 11,
-            "labelFontSize": 10,
-            "gradientLength": 120
-          }
-        },
-        "tooltip": [
-          {"field": "properties.STATE_NAME", "title": "State"},
-          {"field": "properties.billionaires", "title": "Billionaires"}
-        ]
-      }
-    },
-    {
-      "data": {"values": [
+    {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}},
+    {"data": {"url": "data/australia_states.topojson", "format": {"type": "topojson", "feature": "states"}},
+     "mark": {"type": "geoshape", "stroke": "#888", "strokeWidth": 0.8},
+     "encoding": {
+       "color": {"field": "properties.billionaires", "type": "quantitative", "title": "Billionaires",
+                 "scale": {"domain": [0,15], "range": ["#f7fcf5","#c7e9c0","#74c476","#238b45","#00441b"]},
+                 "legend": {"orient": "bottom-left", "title": "Billionaires per State", "gradientLength": 120}},
+       "tooltip": [{"field": "properties.STATE_NAME", "title": "State"}, {"field": "properties.billionaires", "title": "Billionaires"}]
+     }},
+    {"data": {"values": [
         {"label": "Perth",    "lat": -31.95, "lon": 115.86},
         {"label": "Sydney",   "lat": -33.60, "lon": 151.21},
         {"label": "Melbourne","lat": -37.60, "lon": 144.96},
@@ -198,15 +171,15 @@ vegaEmbed('#australia_map', {
         {"label": "Adelaide", "lat": -34.70, "lon": 138.60},
         {"label": "Darwin",   "lat": -12.20, "lon": 130.84}
       ]},
-      "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#333", "dy": -8},
-      "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude":  {"field": "lat", "type": "quantitative"},
-        "text":      {"field": "label", "type": "nominal"}
-      }
-    }
+     "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#333", "dy": -8},
+     "encoding": {
+       "longitude": {"field": "lon", "type": "quantitative"},
+       "latitude":  {"field": "lat", "type": "quantitative"},
+       "text":      {"field": "label", "type": "nominal"}
+     }}
   ]
 }, embedOpts);
+
 
 // ─── CHART 4: Industry Grouped Bar ───────────────────
 vegaEmbed('#industry_chart', {
@@ -326,40 +299,28 @@ vegaEmbed('#bubble_chart', {
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {"url": "data/bubble_data.csv"},
   "layer": [
-    {
-      "mark": {"type": "circle", "opacity": 0.78, "stroke": C.white, "strokeWidth": 1},
-      "encoding": {
-        "x": {"field": "gdp_bn", "type": "quantitative", "title": "GDP (USD Billions)",
-              "scale": {"type": "log", "domain": [1,150000]},
-              "axis": {"format": ",.0f", "gridColor": C.grid, "values": [1,10,100,1000,10000,100000]}},
-        "y": {"field": "billionaire_count", "type": "quantitative", "title": "Billionaires",
-              "scale": {"type": "log", "domain": [1,1200]},
-              "axis": {"gridColor": C.grid, "values": [1,3,10,30,100,300,1000]}},
-        "size": {"field": "total_worth_bn", "type": "quantitative",
-                 "scale": {"range": [40,2200], "type": "sqrt"}, "legend": null},
-        "color": {"field": "highlight", "type": "nominal",
-                  "scale": {"domain": countryDomain, "range": countryRange}},
-        "tooltip": [
-          {"field": "country", "title": "Country"},
-          {"field": "billionaire_count", "title": "Billionaires"},
-          {"field": "gdp_bn", "title": "GDP (USD B)", "format": ",.0f"},
-          {"field": "total_worth_bn", "title": "Total Wealth (USD B)", "format": ",.0f"}
-        ]
-      }
-    },
-    {
-      "transform": [{"filter": "datum.highlight !== 'Other'"}],
-      "mark": {"type": "text", "dy": -13, "fontSize": 10, "fontWeight": 600},
-      "encoding": {
-        "x": {"field": "gdp_bn", "type": "quantitative", "scale": {"type": "log"}},
-        "y": {"field": "billionaire_count", "type": "quantitative", "scale": {"type": "log"}},
-        "text": {"field": "country", "type": "nominal"},
-        "color": {"value": "#333333"}
-      }
-    }
+    {"mark": {"type": "circle", "opacity": 0.78, "stroke": C.white, "strokeWidth": 1},
+     "encoding": {
+       "x": {"field": "gdp_bn", "type": "quantitative", "title": "GDP (USD Billions)",
+             "scale": {"type": "log", "domain": [1,150000]},
+             "axis": {"format": ",.0f", "gridColor": C.grid, "values": [1,10,100,1000,10000,100000]}},
+       "y": {"field": "billionaire_count", "type": "quantitative", "title": "Billionaires",
+             "scale": {"type": "log", "domain": [1,1200]},
+             "axis": {"gridColor": C.grid, "values": [1,3,10,30,100,300,1000]}},
+       "size": {"field": "total_worth_bn", "type": "quantitative", "scale": {"range": [40,2200], "type": "sqrt"}, "legend": null},
+       "color": {"field": "highlight", "type": "nominal", "scale": {"domain": countryDomain, "range": countryRange}},
+       "tooltip": [{"field":"country","title":"Country"},{"field":"billionaire_count","title":"Billionaires"},{"field":"gdp_bn","title":"GDP (USD B)","format":",.0f"},{"field":"total_worth_bn","title":"Total Wealth (USD B)","format":",.0f"}]
+     }},
+    {"transform": [{"filter": "datum.highlight !== 'Other'"}],
+     "mark": {"type": "text", "dy": -13, "fontSize": 10, "fontWeight": 600},
+     "encoding": {
+       "x": {"field": "gdp_bn", "type": "quantitative", "scale": {"type": "log"}},
+       "y": {"field": "billionaire_count", "type": "quantitative", "scale": {"type": "log"}},
+       "text": {"field": "country", "type": "nominal"},
+       "color": {"value": "#333333"}
+     }}
   ]
 }, embedOpts);
-
 
 // ─── CHART 8: Age Strip — jitter + row facet ─────────
 vegaEmbed('#age_chart', {
@@ -446,47 +407,7 @@ vegaEmbed('#donut_chart', {
 }, embedOpts);
 
 
-// ─── CHART 10: Education Scatter ──────────────────────
-const cScale = {"domain": countryDomain.slice(0,9), "range": countryRange.slice(0,9)};
-
-const eduOff = {
-  "Malaysia":      {dx:  9, dy:  7, align:"left"},
-  "Australia":     {dx:  9, dy: -9, align:"left"},
-  "Singapore":     {dx:  9, dy: -9, align:"left"},
-  "United States": {dx: -9, dy:-13, align:"right"},
-  "China":         {dx:  9, dy:  9, align:"left"},
-  "Germany":       {dx: -9, dy: -9, align:"right"},
-  "United Kingdom":{dx: -9, dy:  7, align:"right"},
-  "India":         {dx:  9, dy:  9, align:"left"},
-  "France":        {dx:  9, dy: -9, align:"left"},
-  "Japan":         {dx:  9, dy:  9, align:"left"}
-};
-const taxOff = {
-  "Malaysia":      {dx:  9, dy:  7, align:"left"},
-  "Australia":     {dx:  9, dy: -9, align:"left"},
-  "Singapore":     {dx:  9, dy: -9, align:"left"},
-  "United States": {dx: -9, dy: -9, align:"right"},
-  "China":         {dx:  9, dy:  9, align:"left"},
-  "Germany":       {dx:  9, dy: -9, align:"left"},
-  "United Kingdom":{dx: -9, dy:  7, align:"right"},
-  "India":         {dx:  9, dy:  9, align:"left"},
-  "France":        {dx: -9, dy:  9, align:"right"},
-  "Japan":         {dx: -9, dy: -9, align:"right"}
-};
-
-function scatterLabels(offsets, xf) {
-  return Object.entries(offsets).map(([c, o]) => ({
-    "transform": [{"filter": `datum.country === '${c}'`}],
-    "mark": {"type":"text","fontSize":10,"fontWeight":600,"dx":o.dx,"dy":o.dy,"align":o.align},
-    "encoding": {
-      "x": {"field": xf, "type":"quantitative"},
-      "y": {"field": "per_million","type":"quantitative"},
-      "text": {"field":"country","type":"nominal"},
-      "color": {"value":"#444"}
-    }
-  }));
-}
-
+// ─── CHART 10: Education Scatter ─────────────────────
 vegaEmbed('#factors_chart', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "Does Education Produce Billionaires?",
@@ -494,19 +415,18 @@ vegaEmbed('#factors_chart', {
   "width": "container", "height": 260,
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {"url": "data/country_factors.csv"},
-  "layer": [
-    {"mark": {"type":"circle","size":95,"opacity":0.88,"stroke":C.white,"strokeWidth":1.2},
-     "encoding": {
-       "x": {"field":"education","type":"quantitative","title":"Tertiary Education Enrollment (%)","axis":{"gridColor":C.grid}},
-       "y": {"field":"per_million","type":"quantitative","title":"Billionaires per Million","axis":{"gridColor":C.grid}},
-       "color": {"field":"country","type":"nominal","scale":cScale,"legend":null},
-       "tooltip": [{"field":"country","title":"Country"},{"field":"education","title":"Education (%)"},{"field":"per_million","title":"Per Million","format":".2f"},{"field":"tax_rate","title":"Tax Rate (%)"}]
-     }
-    },
-    ...scatterLabels(eduOff, "education")
-  ]
+  "mark": {"type": "circle", "size": 95, "opacity": 0.88, "stroke": C.white, "strokeWidth": 1.2},
+  "encoding": {
+    "x": {"field": "education", "type": "quantitative", "title": "Tertiary Education Enrollment (%)", "axis": {"gridColor": C.grid}},
+    "y": {"field": "per_million", "type": "quantitative", "title": "Billionaires per Million", "axis": {"gridColor": C.grid}},
+    "color": {"field": "country", "type": "nominal", "title": "Country",
+              "scale": cScale,
+              "legend": {"orient": "right", "title": "Country", "labelFontSize": 10, "titleFontSize": 10}},
+    "tooltip": [{"field":"country","title":"Country"},{"field":"education","title":"Education (%)"},{"field":"per_million","title":"Per Million","format":".2f"},{"field":"tax_rate","title":"Tax Rate (%)"}]
+  }
 }, embedOpts);
-
+ 
+// ─── CHART 11: Tax Scatter ────────────────────────────
 vegaEmbed('#tax_chart', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "Do Lower Taxes Produce More Billionaires?",
@@ -514,21 +434,37 @@ vegaEmbed('#tax_chart', {
   "width": "container", "height": 260,
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {"url": "data/country_factors.csv"},
-  "layer": [
-    {"mark": {"type":"circle","size":95,"opacity":0.88,"stroke":C.white,"strokeWidth":1.2},
-     "encoding": {
-       "x": {"field":"tax_rate","type":"quantitative","title":"Total Tax Rate (%)","axis":{"gridColor":C.grid}},
-       "y": {"field":"per_million","type":"quantitative","title":"Billionaires per Million","axis":{"gridColor":C.grid}},
-       "color": {"field":"country","type":"nominal","scale":cScale,"legend":null},
-       "tooltip": [{"field":"country","title":"Country"},{"field":"tax_rate","title":"Tax Rate (%)"},{"field":"per_million","title":"Per Million","format":".2f"},{"field":"education","title":"Education (%)"}]
-     }
-    },
-    ...scatterLabels(taxOff, "tax_rate")
-  ]
+  "mark": {"type": "circle", "size": 95, "opacity": 0.88, "stroke": C.white, "strokeWidth": 1.2},
+  "encoding": {
+    "x": {"field": "tax_rate", "type": "quantitative", "title": "Total Tax Rate (%)", "axis": {"gridColor": C.grid}},
+    "y": {"field": "per_million", "type": "quantitative", "title": "Billionaires per Million", "axis": {"gridColor": C.grid}},
+    "color": {"field": "country", "type": "nominal", "title": "Country",
+              "scale": cScale,
+              "legend": {"orient": "right", "title": "Country", "labelFontSize": 10, "titleFontSize": 10}},
+    "tooltip": [{"field":"country","title":"Country"},{"field":"tax_rate","title":"Tax Rate (%)"},{"field":"per_million","title":"Per Million","format":".2f"},{"field":"education","title":"Education (%)"}]
+  }
+}, embedOpts);
+ 
+// ─── CHART 12: Wealth Distribution ───────────────────
+vegaEmbed('#wealth_dist_chart', {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Wealth Distribution by Bracket", "subtitle": "Source: Billionaires Statistics Dataset 2023"},
+  "width": "container", "height": 240,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "data": {"url": "data/wealth_distribution.csv"},
+  "mark": {"type": "bar"},
+  "encoding": {
+    "x": {"field": "wealth_bracket", "type": "ordinal", "title": "Wealth Bracket",
+          "sort": ["$1-2B","$2-5B","$5-10B","$10-20B","$20-50B","$50B+"], "axis": {"labelAngle": -20}},
+    "y": {"field": "count", "type": "quantitative", "title": "Billionaires", "axis": {"gridColor": C.grid}},
+    "color": {"field": "country", "type": "nominal", "title": "Country",
+              "scale": {"domain": ["Malaysia","Australia"], "range": [C.gold, C.green]}},
+    "xOffset": {"field": "country", "type": "nominal"},
+    "tooltip": [{"field":"country","title":"Country"},{"field":"wealth_bracket","title":"Bracket"},{"field":"count","title":"Count"}]
+  }
 }, embedOpts);
 
 
-// ─── CHART 11: Wealth Distribution ───────────────────
 vegaEmbed('#wealth_dist_chart', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "Wealth Distribution by Bracket",
