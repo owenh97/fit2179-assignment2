@@ -177,6 +177,7 @@ vegaEmbed('#heatmap_chart', {
 }, embedOpts);
 
 // ─── CHART 6: Slope Chart ────────────────────────────
+
 vegaEmbed('#slope_chart', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "Billionaire Count: 2023 vs 2025",
@@ -219,7 +220,9 @@ vegaEmbed('#slope_chart', {
   ]
 }, embedOpts);
 
+
 // ─── CHART 7: Bubble Chart ────────────────────────────
+
 vegaEmbed('#bubble_chart', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "GDP vs Number of Billionaires",
@@ -244,6 +247,7 @@ vegaEmbed('#bubble_chart', {
 }, embedOpts);
 
 // ─── CHART 8: Age Strip Plot ──────────────────────────
+
 vegaEmbed('#age_chart', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "Age Distribution of Billionaires",
