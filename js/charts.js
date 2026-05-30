@@ -185,37 +185,85 @@ vegaEmbed('#slope_chart', {
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {"url": "data/slope_data.csv"},
   "layer": [
-    {"mark": {"type": "line", "strokeWidth": 3, "point": {"filled": true, "size": 90, "stroke": C.white, "strokeWidth": 2}},
-     "encoding": {
-       "x": {"field": "year", "type": "ordinal", "title": null, "axis": {"labelFontSize": 14, "labelFontWeight": 700, "domainColor": "#ccc"}},
-       "y": {"field": "count", "type": "quantitative", "title": "Number of Billionaires", "scale": {"domain": [0,55]}, "axis": {"gridColor": C.grid}},
-       "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}},
-       "detail": {"field": "country", "type": "nominal"}
-     }},
-    {"mark": {"type": "text", "align": "right", "dx": -14, "fontSize": 12, "fontWeight": 600},
-     "transform": [{"filter": "datum.year === '2023'"}],
-     "encoding": {
-       "x": {"field": "year", "type": "ordinal"},
-       "y": {"field": "count", "type": "quantitative", "scale": {"domain": [0,55]}},
-       "text": {"field": "count", "type": "quantitative"},
-       "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null}
-     }},
-    {"mark": {"type": "text", "align": "left", "dx": 14, "fontSize": 12, "fontWeight": 600},
-     "transform": [{"filter": "datum.year === '2025'"}],
-     "encoding": {
-       "x": {"field": "year", "type": "ordinal"},
-       "y": {"field": "count", "type": "quantitative", "scale": {"domain": [0,55]}},
-       "text": {"field": "count", "type": "quantitative"},
-       "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null}
-     }},
-    {"mark": {"type": "text", "align": "left", "dx": 14, "dy": -16, "fontSize": 13, "fontWeight": 700},
-     "transform": [{"filter": "datum.year === '2025'"}],
-     "encoding": {
-       "x": {"field": "year", "type": "ordinal"},
-       "y": {"field": "count", "type": "quantitative", "scale": {"domain": [0,55]}},
-       "text": {"field": "country", "type": "nominal"},
-       "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null}
-     }}
+    {
+      "mark": {"type": "line", "strokeWidth": 3, "point": {"filled": true, "size": 90, "stroke": C.white, "strokeWidth": 2}},
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal", "title": null,
+              "axis": {"labelFontSize": 14, "labelFontWeight": 700, "domainColor": "#ccc"}},
+        "y": {"field": "count", "type": "quantitative", "title": "Number of Billionaires",
+              "scale": {"domain": [0,55]}, "axis": {"gridColor": C.grid}},
+        "color": {"field": "country", "type": "nominal",
+                  "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}},
+        "detail": {"field": "country", "type": "nominal"}
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "right", "dx": -14, "fontSize": 12, "fontWeight": 600},
+      "transform": [{"filter": "datum.year === '2023'"}],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "count", "type": "quantitative", "scale": {"domain": [0,55]}},
+        "text": {"field": "count", "type": "quantitative"},
+        "color": {"field": "country", "type": "nominal",
+                  "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null}
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "dx": 14, "fontSize": 12, "fontWeight": 600},
+      "transform": [{"filter": "datum.year === '2025'"}],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "count", "type": "quantitative", "scale": {"domain": [0,55]}},
+        "text": {"field": "count", "type": "quantitative"},
+        "color": {"field": "country", "type": "nominal",
+                  "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null}
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "dx": 14, "dy": -16, "fontSize": 13, "fontWeight": 700},
+      "transform": [{"filter": "datum.year === '2025'"}],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "count", "type": "quantitative", "scale": {"domain": [0,55]}},
+        "text": {"field": "country", "type": "nominal"},
+        "color": {"field": "country", "type": "nominal",
+                  "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null}
+      }
+    },
+    {
+      "data": {"values": [{"x": "2025", "y": 30}]},
+      "mark": {
+        "type": "rule",
+        "color": "#999999",
+        "strokeWidth": 0.8,
+        "strokeDash": [3,3]
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "ordinal"},
+        "y": {"field": "y", "type": "quantitative", "scale": {"domain": [0,55]}},
+        "x2": {"value": 340},
+        "y2": {"value": 218}
+      }
+    },
+    {
+      "data": {"values": [
+        {"row": 1, "text": "A sudden 73% surge in just"},
+        {"row": 2, "text": "two years highlights a rapidly"},
+        {"row": 3, "text": "shifting economic ceiling in Malaysia."}
+      ]},
+      "mark": {"type": "text", "align": "right", "font": "Inter, sans-serif", "fontSize": 10},
+      "encoding": {
+        "x": {"value": 330},
+        "y": {"field": "row", "type": "quantitative",
+              "scale": {"domain": [0, 4]}, "axis": null},
+        "text": {"field": "text", "type": "nominal"},
+        "color": {"value": "#4a4a4a"},
+        "fontWeight": {
+          "condition": {"test": "datum.row === 1", "value": "bold"},
+          "value": "normal"
+        }
+      }
+    }
   ]
 }, embedOpts);
 
@@ -228,18 +276,65 @@ vegaEmbed('#bubble_chart', {
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {"url": "data/bubble_data.csv"},
   "layer": [
-    {"mark": {"type": "circle", "opacity": 0.78, "stroke": C.white, "strokeWidth": 1},
-     "encoding": {
-       "x": {"field": "gdp_bn", "type": "quantitative", "title": "GDP (USD Billions)",
-             "scale": {"type": "log", "domain": [1,150000]},
-             "axis": {"format": ",.0f", "gridColor": C.grid, "values": [1,10,100,1000,10000,100000]}},
-       "y": {"field": "billionaire_count", "type": "quantitative", "title": "Billionaires",
-             "scale": {"type": "log", "domain": [1,1200]},
-             "axis": {"gridColor": C.grid, "values": [1,3,10,30,100,300,1000]}},
-       "size": {"field": "total_worth_bn", "type": "quantitative", "scale": {"range": [40,2200], "type": "sqrt"}, "legend": null},
-       "color": {"field": "highlight", "type": "nominal", "scale": {"domain": countryDomain, "range": countryRange}},
-       "tooltip": [{"field":"country","title":"Country"},{"field":"billionaire_count","title":"Billionaires"},{"field":"gdp_bn","title":"GDP (USD B)","format":",.0f"},{"field":"total_worth_bn","title":"Total Wealth (USD B)","format":",.0f"}]
-     }}
+    {
+      "mark": {"type": "circle", "opacity": 0.78, "stroke": C.white, "strokeWidth": 1},
+      "encoding": {
+        "x": {"field": "gdp_bn", "type": "quantitative", "title": "GDP (USD Billions)",
+              "scale": {"type": "log", "domain": [1,150000]},
+              "axis": {"format": ",.0f", "gridColor": C.grid, "values": [1,10,100,1000,10000,100000]}},
+        "y": {"field": "billionaire_count", "type": "quantitative", "title": "Billionaires",
+              "scale": {"type": "log", "domain": [1,1200]},
+              "axis": {"gridColor": C.grid, "values": [1,3,10,30,100,300,1000]}},
+        "size": {"field": "total_worth_bn", "type": "quantitative", "scale": {"range": [40,2200], "type": "sqrt"}, "legend": null},
+        "color": {"field": "highlight", "type": "nominal", "scale": {"domain": countryDomain, "range": countryRange}},
+        "tooltip": [{"field":"country","title":"Country"},{"field":"billionaire_count","title":"Billionaires"},{"field":"gdp_bn","title":"GDP (USD B)","format":",.0f"},{"field":"total_worth_bn","title":"Total Wealth (USD B)","format":",.0f"}]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.highlight !== 'Other'"}],
+      "mark": {"type": "text", "dy": -13, "fontSize": 10, "fontWeight": 600},
+      "encoding": {
+        "x": {"field": "gdp_bn", "type": "quantitative", "scale": {"type": "log"}},
+        "y": {"field": "billionaire_count", "type": "quantitative", "scale": {"type": "log"}},
+        "text": {"field": "country", "type": "nominal"},
+        "color": {"value": "#333333"}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.highlight === 'Singapore'"}],
+      "mark": {
+        "type": "rule",
+        "color": "#999999",
+        "strokeWidth": 0.8,
+        "strokeDash": [3,3]
+      },
+      "encoding": {
+        "x": {"field": "gdp_bn", "type": "quantitative", "scale": {"type": "log"}},
+        "y": {"field": "billionaire_count", "type": "quantitative", "scale": {"type": "log"}},
+        "x2": {"value": 60},
+        "y2": {"value": 38}
+      }
+    },
+    {
+      "data": {"values": [
+        {"row": 1, "text": "The Outlier:",        "bold": true},
+        {"row": 2, "text": "Singapore defies the trend,"},
+        {"row": 3, "text": "generating outsized billionaire"},
+        {"row": 4, "text": "wealth despite a smaller"},
+        {"row": 5, "text": "economic footprint."}
+      ]},
+      "mark": {"type": "text", "align": "left", "font": "Inter, sans-serif", "fontSize": 10, "lineBreak": "\n"},
+      "encoding": {
+        "x": {"value": 20},
+        "y": {"field": "row", "type": "quantitative", "scale": {"domain": [0,6]}, "axis": null},
+        "text": {"field": "text", "type": "nominal"},
+        "color": {"value": "#4a4a4a"},
+        "fontWeight": {
+          "condition": {"test": "datum.bold === true", "value": "bold"},
+          "value": "normal"
+        }
+      }
+    }
   ]
 }, embedOpts);
 
@@ -252,15 +347,54 @@ vegaEmbed('#age_chart', {
   "autosize": {"type": "fit", "contains": "padding"},
   "data": {"url": "data/age_data.csv"},
   "transform": [{"calculate": "random() * 0.5 - 0.25", "as": "jitter"}],
-  "mark": {"type": "circle", "size": 65, "opacity": 0.68, "stroke": C.white, "strokeWidth": 0.5},
-  "encoding": {
-    "x": {"field": "age", "type": "quantitative", "title": "Age", "scale": {"domain": [30,95]}, "axis": {"gridColor": C.grid}},
-    "y": {"field": "jitter", "type": "quantitative", "title": null, "scale": {"domain": [-1,1]}, "axis": null},
-    "row": {"field": "country", "type": "nominal", "title": null,
-            "header": {"labelFontSize": 12, "labelFontWeight": 700, "labelColor": C.text, "labelPadding": 4}},
-    "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null},
-    "tooltip": [{"field":"personName","title":"Name"},{"field":"country","title":"Country"},{"field":"age","title":"Age"}]
-  }
+  "layer": [
+    {
+      "mark": {"type": "circle", "size": 65, "opacity": 0.68, "stroke": C.white, "strokeWidth": 0.5},
+      "encoding": {
+        "x": {"field": "age", "type": "quantitative", "title": "Age", "scale": {"domain": [30,95]}, "axis": {"gridColor": C.grid}},
+        "y": {"field": "jitter", "type": "quantitative", "title": null, "scale": {"domain": [-1,1]}, "axis": null},
+        "color": {"field": "country", "type": "nominal", "scale": {"domain": ["Australia","Malaysia"], "range": [C.green, C.gold]}, "legend": null},
+        "tooltip": [{"field":"personName","title":"Name"},{"field":"country","title":"Country"},{"field":"age","title":"Age"}]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.country === 'Australia' && datum.age <= 40"}],
+      "mark": {
+        "type": "rule",
+        "color": "#999999",
+        "strokeWidth": 0.8,
+        "strokeDash": [3,3]
+      },
+      "encoding": {
+        "x": {"field": "age", "type": "quantitative", "scale": {"domain": [30,95]}},
+        "y": {"value": 0},
+        "x2": {"value": 90},
+        "y2": {"value": 68}
+      }
+    },
+    {
+      "data": {"values": [
+        {"row": 1, "text": "The Tech Generation:"},
+        {"row": 2, "text": "Australia's wealth is actively"},
+        {"row": 3, "text": "transferring to younger, tech-driven"},
+        {"row": 4, "text": "founders, while Malaysia's wealth"},
+        {"row": 5, "text": "remains in the older generation."}
+      ]},
+      "mark": {"type": "text", "align": "left", "font": "Inter, sans-serif", "fontSize": 10},
+      "encoding": {
+        "x": {"value": 88},
+        "y": {"field": "row", "type": "quantitative", "scale": {"domain": [0,6]}, "axis": null},
+        "text": {"field": "text", "type": "nominal"},
+        "color": {"value": "#4a4a4a"},
+        "fontWeight": {
+          "condition": {"test": "datum.row === 1", "value": "bold"},
+          "value": "normal"
+        }
+      }
+    }
+  ],
+  "row": {"field": "country", "type": "nominal", "title": null,
+          "header": {"labelFontSize": 12, "labelFontWeight": 700, "labelColor": C.text, "labelPadding": 4}}
 }, embedOpts);
 
 // ─── CHART 9: Donuts ──────────────────────────────────
