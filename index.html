@@ -1,518 +1,1036 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>The Anatomy of Wealth</title>
+
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3/build/pure-min.css">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
   <style>
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body { font-family: 'Inter', sans-serif; background: #f5f0e8; color: #2c2c2c; }
 
+
+
     /* ── HEADER ── */
+
     #header {
+
       background: #2d4a3e;
+
       padding: 80px 180px 72px 180px;
+
       border-bottom: 4px solid #c9a84c;
+
     }
+
     #header .eyebrow {
+
       font-size: 0.68em; font-weight: 700; letter-spacing: 5px;
+
       text-transform: uppercase; color: #a8c5b0; margin-bottom: 20px;
+
     }
+
     #header h1 {
+
       font-size: 5.2em; font-weight: 900; line-height: 1.05;
+
       letter-spacing: 2px; color: #f5f0e8;
+
       max-width: 850px; margin-bottom: 20px;
+
     }
+
     #header .subtitle {
+
       font-size: 1em; font-weight: 300; color: #c8d8c8;
+
       line-height: 1.75; margin-bottom: 0;
+
     }
+
+
 
     /* ── PAGE WRAP ── */
+
     .page-wrap { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
 
+
+
     /* ── SECTION LABEL ── */
+
     .section-label {
-      font-size: 0.67em; font-weight: 700; letter-spacing: 5px;
+
+      font-size: 0.67em; font-weight: 700; letter-spacing: 4px;
+
       text-transform: uppercase; color: #2d4a3e; margin-bottom: 10px;
+
     }
+
+
 
     /* ── STANDARD SECTION ── */
+
     .section {
+
       padding: 65px 0 30px 0;
+
       border-bottom: 1px solid #ddd6c5;
+
     }
+
     .section h2 {
-      font-size: 2.3em; font-weight: 700; color: #1a1a1a;
-      margin-bottom: 30px; line-height: 1.1; letter-spacing: -0.5px;
+
+      font-size: 2.3em; font-weight: 900; color: #1a1a1a;
+
+      margin-bottom: 30px; line-height: 1.05; letter-spacing: -1.5px;
+
     }
+
+
 
     /* ── FULLWIDTH SECTION ── */
+
     .section-fullwidth {
+
       padding: 65px 0 50px 0;
+
       border-bottom: 1px solid #ddd6c5;
+
     }
+
     .section-fullwidth .section-label { text-align: center; }
+
     .section-fullwidth h2 {
-      font-size: 2.3em; font-weight: 700; color: #1a1a1a;
-      text-align: center; margin-bottom: 12px; letter-spacing: -0.5px;
+
+      font-size: 2.3em; font-weight: 900; color: #1a1a1a;
+
+      text-align: center; margin-bottom: 12px; letter-spacing: -1.5px;
+
     }
+
     .section-fullwidth .lead {
+
       text-align: center; max-width: 680px; margin: 0 auto 32px;
+
       font-size: 0.97em; font-weight: 300; line-height: 1.8; color: #555;
+
     }
+
+
 
     /* ── LOCAL MAP SECTIONS ── */
+
     .section-local {
+
       padding: 72px 0 64px 0;
+
       border-bottom: 1px solid #ddd6c5;
+
     }
+
     .section-local h2 {
-      font-size: 2.3em; font-weight: 700; color: #1a1a1a;
-      margin-bottom: 10px; letter-spacing: -0.5px;
+
+      font-size: 2.3em; font-weight: 900; color: #1a1a1a;
+
+      margin-bottom: 10px; letter-spacing: -1.5px;
+
     }
+
     .section-local .lead {
+
       font-size: 0.97em; font-weight: 300; line-height: 1.8;
+
       color: #555; margin-bottom: 36px; max-width: 720px;
+
     }
+
+
 
     /* ── MAP RECT ── */
+
     .map-rect {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 3px 20px rgba(0,0,0,0.09);
-      width: 100%;
-      min-height: 520px;
-      overflow: visible;
-      padding: 16px;
-      margin-bottom: 0;
-      box-sizing: border-box;
+
+    background: #fff;
+
+    border-radius: 14px;
+
+    box-shadow: 0 3px 20px rgba(0,0,0,0.09);
+
+    width: 100%;
+
+    min-height: 520px;
+
+    overflow: visible;
+
+    padding: 16px;
+
+    margin-bottom: 0;
+
+    box-sizing: border-box;
+
     }
+
     .map-rect > div {
+
       min-height: 480px;
+
       width: 100% !important;
+
     }
+
     
+
     /* ── CARD ── */
+
     .card {
+
       background: #fff; border-radius: 12px;
-      box-shadow: 0 2px 16 rgba(0,0,0,0.08);
+
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+
       padding: 22px; margin-bottom: 22px;
+
       overflow: hidden; width: 100%;
+
     }
+
+
 
     /* ── NARRATIVE ── */
+
     .narrative {
+
       font-size: 0.94em; font-weight: 300;
+
       line-height: 1.85; color: #444;
+
       padding: 8px 18px 8px 0;
+
     }
+
     .narrative strong { font-weight: 700; color: #1a1a1a; }
+
     .narrative p { margin-bottom: 13px; }
+
     .narrative p:last-child { margin-bottom: 0; }
 
+
+
     /* ── CHART CONTAINER ── */
+
     .chart-container { width: 100%; overflow: hidden; }
+
     .chart-container > div { width: 100% !important; }
 
+
+
     /* ── GRID ── */
+
     .pure-g { align-items: flex-start; }
+
     .pure-u-1-3, .pure-u-2-3, .pure-u-1-2, .pure-u-1-1 {
+
       box-sizing: border-box; padding: 0 10px; min-width: 0;
+
     }
+
+
 
     /* ── DIVIDERS ── */
+
     .green-divider      { width: 44px; height: 3px; background: #2d4a3e; margin: 0 auto 18px; }
+
     .green-divider-left { width: 44px; height: 3px; background: #2d4a3e; margin: 0 0 18px; }
 
+
+
     /* ── WORLD MAP ── */
+
     #map_chart { width: 100%; }
+
     #map_chart canvas, #map_chart svg { width: 100% !important; }
 
+
+
     /* ── SECTION 08 equal sizing ── */
+
     .s8-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
     .s8-col  { display: flex; flex-direction: column; }
+
     .s8-col .card { flex: 1; margin-bottom: 0; }
+
     .s8-note {
+
       font-size: 0.92em; font-weight: 300; line-height: 1.75;
+
       color: #555; padding: 14px 4px 0 4px;
+
     }
+
     .s8-note strong { font-weight: 700; color: #1a1a1a; }
 
+
+
     /* ── PRE-FOOTER SPACER ── */
+
     .pre-footer { height: 72px; }
 
+
+
     /* ── FOOTER ── */
+
     #footer { background: #2d4a3e; padding: 52px 80px; }
+
     .footer-grid {
+
       display: grid; grid-template-columns: 1fr 1fr 1fr;
+
       gap: 48px; max-width: 1200px; margin: 0 auto;
+
     }
+
     .footer-label {
+
       font-size: 0.64em; font-weight: 700; letter-spacing: 3px;
+
       text-transform: uppercase; color: #a8c5b0; margin-bottom: 12px;
+
     }
+
     .footer-col p {
+
       font-size: 0.83em; font-weight: 300; color: #c8d8c8; line-height: 1.9;
+
     }
+
     .footer-col a { color: #c9a84c; text-decoration: none; }
+
     .footer-col a:hover { text-decoration: underline; }
+
     .footer-col.center { text-align: center; }
+
     .footer-col.right  { text-align: right; }
+
   </style>
+
 </head>
+
 <body>
 
+
+
 <!-- ── HEADER ── -->
+
 <div id="header">
+
   <div class="eyebrow">FIT2179 · Data Visualisation 2</div>
+
   <h1>The Anatomy<br>of Wealth</h1>
+
   <p class="subtitle">
+
     A Story-Based Visualisation About How National Factors Shape Billionaires in<br>
+
     Australia, Malaysia &amp; The World
+
   </p>
+
 </div>
+
+
 
 <div class="page-wrap">
 
+
+
   <!-- ── S01: World Map ── -->
+
   <div class="section-fullwidth">
+
     <div class="section-label">Section 01 · Global</div>
+
     <h2>Where Are the Billionaires?</h2>
+
     <div class="green-divider"></div>
+
     <p class="lead">Billionaires are not evenly distributed across the globe. The United States and China alone account for nearly half of the world's billionaires. Malaysia has just 11 compared to Australia's 43 — despite both being high-income economies in the Asia-Pacific region.</p>
+
     <div class="card" style="padding: 14px;">
+
       <div id="map_chart"></div>
+
     </div>
+
   </div>
+
+
 
 <!-- ── S02: Malaysia Map ── -->
+
 <div class="section-local">
+
   <div class="section-label">Section 02 · Malaysia</div>
+
   <h2>Malaysia's Billionaire Landscape</h2>
+
   <div class="green-divider-left"></div>
+
   <p class="lead">Malaysia's billionaires are overwhelmingly concentrated in the Klang Valley — Kuala Lumpur and Selangor dominate. Wealth is as geographically concentrated as it is economically.</p>
 
+
+
   <div class="map-rect">
+
     <div id="malaysia_map" style="min-height:480px; display:block; width:100%;"></div>
+
   </div>
 
+
+
   <div class="pure-g" style="margin-top: 30px;">
+
     <div class="pure-u-1-2">
+
       <div class="narrative">
+
         <p>The majority of Malaysian billionaires operate out of <strong>Kuala Lumpur and Selangor</strong>. Robert Kuok, Malaysia's wealthiest at $12.1B, built his fortune through sugar, shipping and hospitality.</p>
+
       </div>
+
     </div>
+
     <div class="pure-u-1-2">
+
       <div class="narrative">
+
         <p>Unlike Australia, where billionaires span multiple states, Malaysia's wealth is heavily centralised in the western corridor of Peninsular Malaysia.</p>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
+
+
 
 <!-- ── S03: Australia Map ── -->
+
 <div class="section-local">
+
   <div class="section-label">Section 03 · Australia</div>
+
   <h2>Australia's Billionaire Landscape</h2>
+
   <div class="green-divider-left"></div>
+
   <p class="lead">Australia's 47 billionaires are spread across its states — from mining magnates in Western Australia to tech founders in New South Wales and Victoria. Geography reflects industry.</p>
 
+
+
   <div class="map-rect">
+
     <div id="australia_map" style="min-height:480px; display:block; width:100%;"></div>
+
   </div>
+
+
 
   <div class="pure-g" style="margin-top: 30px;">
+
     <div class="pure-u-1-2">
+
       <div class="narrative">
+
         <p><strong>Western Australia</strong> is home to Gina Rinehart and Andrew Forrest — both mining billionaires whose fortunes rival the GDP of small nations.</p>
+
       </div>
+
     </div>
+
     <div class="pure-u-1-2">
+
       <div class="narrative">
+
         <p><strong>New South Wales</strong> houses Mike Cannon-Brookes, Scott Farquhar and Melanie Perkins — all under 50, representing a new wave of technology-driven wealth.</p>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
+
+
 
 <!-- ── S03.5: Change Over Time ── -->
+
 <div class="section">
+
   <div class="section-label">Section 03.5 · Change Over Time</div>
+
   <h2>Who Gained? Who Lost?</h2>
-  <div class="pure-g" style="display: flex; align-items: center;">
+
+  <div class="pure-g">
+
     <div class="pure-u-1-3">
+
       <div class="narrative">
+
         <p>Between 2023 and 2025, Malaysia saw the most dramatic proportional rise — from <strong style="color:#1a1a1a;">11 to 19 billionaires</strong>, a jump of 73%. Australia grew modestly from 43 to 47.</p>
+
         <p>This two-year window reveals how quickly the billionaire landscape can shift.</p>
+
       </div>
+
     </div>
+
     <div class="pure-u-2-3">
+
       <div class="card">
+
         <div class="chart-container">
+
           
+
           <!-- FULL-WIDTH CONTAINER TRICK -->
+
           <div class="chart-wrapper" style="position: relative; display: block; width: 100%;">
+
             
+
             <div id="slope_chart" style="width: 100%;"></div>
+
             
+
             <!-- THE SLOPE LINE STORYTELLING CARD -->
+
             <div class="diagram-card" style="
+
               position: absolute; 
-              top: 48%; 
-              left: 35%; 
+
+              top: 38%; 
+
+              left: 12%; 
+
               background-color: #f4f0ea; 
+
               border-radius: 6px; 
+
               padding: 8px 10px; 
+
               box-shadow: 0 2px 6px rgba(0,0,0,0.03); 
+
               font-family: 'Montserrat', sans-serif; 
+
               z-index: 10; 
+
               pointer-events: none; 
-              width: 260px;
+
+              width: 250px;
+
             ">
+
               <span class="card-title" style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #7a7a7a; display: block; margin-bottom: 2px;">Rapid Landscape Shift</span>
+
               <p class="card-body" style="font-size: 10.5px; line-height: 1.35; color: #4a4a4a; margin: 0;">
+
                 A sudden 73% surge in just two years highlights a rapidly shifting economic ceiling in Malaysia.
+
               </p>
+
             </div>
 
+
+
           </div>
+
           
+
         </div>
+
       </div>
-    </div>
-  </div>
-</div>
-  
-  <!-- ── S04: Industry ── -->
-  <div class="section">
-    <div class="section-label">Section 04 · Industry</div>
-    <h2>Which Industries Produce Billionaires?</h2>
-    <div class="pure-g" style="display: flex; align-items: center;">
-      <div class="pure-u-1-3">
-        <div class="narrative">
-          <p>Australia's wealth is grounded on its soil. <strong>Metals &amp; Mining leads with 10 billionaires</strong>, reflecting a resource-rich economy.</p>
-          <p>Malaysia tells a different story: <strong>Finance &amp; Investments at 5, Real Estate at 3</strong>. Malaysia has zero technology billionaires.</p>
-        </div>
-      </div>
-      <div class="pure-u-2-3">
-        <div class="card">
-          <div class="chart-container">
-            <div id="industry_chart"></div>
-          </div>
-        </div>
-      </div>
+
     </div>
 
-    <div class="pure-g" style="margin-top: 44px; display: flex; align-items: center;">
-      <div class="pure-u-1-2">
-        <div class="card" style="margin-bottom: 0;">
-          <div class="chart-container">
-            <div id="heatmap_chart"></div>
-          </div>
-        </div>
-      </div>
-      <div class="pure-u-1-2">
-        <div class="narrative" style="padding: 10px 10px 10px 36px;">
-          <p>The heatmap shows the same data from a different angle — darker cells indicate more billionaires in that industry. Australia dominates across most categories while Malaysia's billionaire base concentrates in just a few sectors.</p>
-        </div>
-      </div>
-    </div>
   </div>
+
+</div>
+
+  
+
+  <!-- ── S04: Industry ── -->
+
+  <div class="section">
+
+    <div class="section-label">Section 04 · Industry</div>
+
+    <h2>Which Industries Produce Billionaires?</h2>
+
+    <div class="pure-g">
+
+      <div class="pure-u-1-3">
+
+        <div class="narrative">
+
+          <p>Australia's wealth is grounded on its soil. <strong>Metals &amp; Mining leads with 10 billionaires</strong>, reflecting a resource-rich economy.</p>
+
+          <p>Malaysia tells a different story: <strong>Finance &amp; Investments at 5, Real Estate at 3</strong>. Malaysia has zero technology billionaires.</p>
+
+        </div>
+
+      </div>
+
+      <div class="pure-u-2-3">
+
+        <div class="card">
+
+          <div class="chart-container">
+
+            <div id="industry_chart"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="pure-g" style="margin-top: 44px;">
+
+      <div class="pure-u-1-2">
+
+        <div class="card">
+
+          <div class="chart-container">
+
+            <div id="heatmap_chart"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="pure-u-1-2" style="display: flex; align-items: center;">
+
+        <div class="narrative" style="padding: 10px 10px 10px 22px;">
+
+          <p>The heatmap shows the same data from a different angle — darker cells indicate more billionaires in that industry. Australia dominates across most categories while Malaysia's billionaire base concentrates in just a few sectors.</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
 
 <!-- ── S05: National Factors ── -->
+
 <div class="section">
+
   <div class="section-label">Section 05 · National Factors</div>
+
   <h2>Does National Wealth Matter?</h2>
-  <div class="pure-g" style="display: flex; align-items: center;">
+
+  <div class="pure-g">
+
     <div class="pure-u-1-3">
+
       <div class="narrative">
+
         <p>GDP alone does not determine how many billionaires a country produces.  <strong style="color:#1a1a1a;">Singapore</strong>, with a much smaller economy than Malaysia, houses <strong style="color:#1a1a1a;">46 billionaires</strong> — more than four times Malaysia's count.</p>
+
         <p>Despite decades of growth, Malaysia remains an outlier compared to peers of similar GDP size.</p>
+
       </div>
+
     </div>
+
     <div class="pure-u-2-3">
+
       <div class="card">
+
         <div class="chart-container">
+
           
+
           <div class="chart-wrapper" style="position: relative; display: block; width: 100%;">
+
             
+
             <div id="bubble_chart" style="width: 100%;"></div>
+
             
+
             <!-- THE OPTIMIZED IN-CHART STORYTELLING CARD -->
+
             <div class="diagram-card" style="
+
               position: absolute; 
-              top: 25%; 
+
+              top: 18%; 
+
               left: 14%; 
+
               background-color: #f4f0ea; 
+
               border-radius: 6px; 
+
               padding: 8px 10px; 
+
               box-shadow: 0 2px 6px rgba(0,0,0,0.03); 
+
               font-family: 'Montserrat', sans-serif; 
+
               z-index: 10; 
+
               pointer-events: none; 
+
               width: 185px;
+
             ">
+
               <span class="card-title" style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #7a7a7a; display: block; margin-bottom: 2px;">The Outlier</span>
+
               <p class="card-body" style="font-size: 10.5px; line-height: 1.35; color: #4a4a4a; margin: 0;">
+
                 Singapore defies the trend, generating outsized billionaire wealth despite a smaller economic footprint.
+
               </p>
+
             </div>
 
+
+
           </div>
+
           
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
   <div class="pure-g" style="margin-top: 36px;">
+
     <div class="pure-u-1-2">
+
       <div class="card">
+
         <div class="chart-container">
+
           <div id="factors_chart"></div>
+
         </div>
+
       </div>
+
     </div>
+
     <div class="pure-u-1-2">
+
       <div class="card">
+
         <div class="chart-container">
+
           <div id="tax_chart"></div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
   <p style="text-align:center; max-width:780px; margin:20px auto 0;
+
             font-size:0.93em; font-weight:300; color:#555; line-height:1.75;">
+
     Singapore is an outlier with <strong style="color:#1a1a1a;">8 billionaires per million people</strong> despite a moderate tax rate. Malaysia's low tertiary education enrollment of <strong style="color:#1a1a1a;">45%</strong> compared to Australia's <strong style="color:#1a1a1a;">113%</strong> may partly explain the gap.
+
   </p>
+
 </div>
+
+
 
 <!-- ── S06: Demographics ── -->
+
 <div class="section">
+
   <div class="section-label">Section 06 · Demographics</div>
+
   <h2>How Old Are They?</h2>
-  <div class="pure-g" style="display: flex; align-items: center;">
+
+  <div class="pure-g">
+
     <div class="pure-u-2-3">
-      <div class="card" style="margin-bottom: 0;">
+
+      <div class="card">
+
         <div class="chart-container">
+
           
+
           <!-- FULL-WIDTH CONTAINER TRICK -->
+
           <div class="chart-wrapper" style="position: relative; display: block; width: 100%;">
+
             
+
             <div id="age_chart" style="width: 100%;"></div>
+
             
-            <!-- WIDE RECTANGULAR AGE STORYTELLING CARD -->
+
+            <!-- THE AGE STORYTELLING CARD -->
+
             <div class="diagram-card" style="
+
               position: absolute; 
-              top: 45%; 
-              left: 13%; 
+
+              top: 40%; 
+
+              left: 7%; 
+
               background-color: #f4f0ea; 
+
               border-radius: 6px; 
+
               padding: 8px 10px; 
+
               box-shadow: 0 2px 6px rgba(0,0,0,0.03); 
+
               font-family: 'Montserrat', sans-serif; 
+
               z-index: 10; 
+
               pointer-events: none; 
-              width: 280px;
+
+              width: 290x;
+
             ">
+
               <span class="card-title" style="font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #7a7a7a; display: block; margin-bottom: 2px;">The Tech Generation</span>
+
               <p class="card-body" style="font-size: 10.5px; line-height: 1.35; color: #4a4a4a; margin: 0;">
+
                 Australia's wealth is actively transferring to younger founders, while Malaysia's remains locked in the older generation.
+
               </p>
+
             </div>
 
+
+
           </div>
+
           
+
         </div>
+
       </div>
+
     </div>
+
     <div class="pure-u-1-3">
-      <div class="narrative" style="padding-left: 28px; padding-right: 0;">
+
+      <div class="narrative">
+
         <p>Malaysian billionaires are much older — the <strong style="color:#1a1a1a;">median age is 71</strong>, and the youngest is 45. Wealth has not yet passed to the next generation.</p>
+
         <p>Australia shows far more generational spread, with billionaires <strong style="color:#1a1a1a;">as young as 35</strong>. Melanie Perkins and Mike Cannon-Brookes represent technology-driven wealth.</p>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
 
+
+
   <!-- ── S07: Who Are They ── -->
+
   <div class="section">
+
     <div class="section-label">Section 07 · Gender &amp; Origin</div>
+
     <h2>Who Are They?</h2>
-    <div class="pure-g" style="display: flex; align-items: flex-start;">
+
+    <div class="pure-g" style="align-items: flex-start;">
+
       <div class="pure-u-1-3">
-        <div class="narrative" style="padding-top: 0;">
+
+        <div class="narrative" style="padding-top: 40px;">
+
           <p>Billionaires in both countries are overwhelmingly male. Malaysia's  <strong style="color:#1a1a1a;">three female billionaires are all daughters of the same man</strong> — Teh Hong Piow, founder of Public Bank.</p>
+
           <p>Malaysia's self-made rate of <strong>55%</strong> is lower than Australia's <strong>67%</strong>, suggesting inherited wealth plays a larger role.</p>
+
         </div>
+
       </div>
+
       <div class="pure-u-2-3">
-        <div class="card" style="padding: 12px 20px 20px 10px; margin-top: -24px; margin-bottom: 0;">
+
+        <div class="card" style="padding: 28px 20px 20px 10px;">
+
           <div class="chart-container" style="display:flex; justify-content:center;">
+
             <div id="donut_chart"></div>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
 
+
+
   <!-- ── S08: Wealth Depth ── -->
+
   <div class="section">
+
     <div class="section-label">Section 08 · Wealth Depth</div>
+
     <h2>How Much Do They Actually Have?</h2>
+
     <div class="s8-grid">
+
       <div class="s8-col">
+
         <div class="card">
+
           <div class="chart-container">
+
             <div id="wealth_dist_chart"></div>
+
           </div>
+
         </div>
+
         <p class="s8-note">The vast majority of billionaires sit in the <strong>$1–2B bracket</strong>. Being a billionaire does not mean being equally wealthy — most are closer to the floor than the ceiling.</p>
+
       </div>
+
       <div class="s8-col">
+
         <div class="card">
+
           <div class="chart-container">
+
             <div id="top_chart"></div>
+
           </div>
+
         </div>
+
         <p class="s8-note">Australia's wealthiest — <strong>Gina Rinehart at $29.3B</strong> — dwarfs Malaysia's richest, Robert Kuok at $12.1B. Click the legend to filter by country.</p>
+
       </div>
+
     </div>
+
   </div>
+
+
 
 </div><!-- end page-wrap -->
 
+
+
 <div class="pre-footer"></div>
 
+
+
 <!-- ── FOOTER ── -->
+
 <div id="footer">
+
   <div class="footer-grid">
+
     <div class="footer-col">
+
       <div class="footer-label">Data Sources</div>
+
       <p>
+
         <a href="https://www.kaggle.com/datasets/sunitabakshi/worldwide-billionaires-2025" target="_blank">Forbes Billionaire List 2025</a><br>
+
         Forbes Media LLC · forbes.com/billionaires<br>
+
         Accessed May 2026<br><br>
+
         <a href="https://www.kaggle.com/datasets/nelgiriyewithana/billionaires-statistics-dataset" target="_blank">Billionaires Statistics Dataset 2023</a><br>
+
         Nidula Elgiriyewithana · Kaggle.com
+
       </p>
+
     </div>
+
     <div class="footer-col center">
+
       <div class="footer-label">Author</div>
+
       <p>Owen Hee<br><br>FIT2179 Data Visualisation 2<br>Monash University Malaysia<br>May 2026</p>
+
     </div>
+
     <div class="footer-col right">
+
       <div class="footer-label">Acknowledgements</div>
-      <p>Generative AI <br>used for coding assistance<br>and grammar checking.<br><br>Built with Vega-Lite, Pure CSS<br>and hosted on GitHub Pages.</p>
+
+      <p>Generative AI (Claude, Anthropic)<br>used for coding assistance<br>and grammar checking.<br><br>Built with Vega-Lite, Pure CSS<br>and hosted on GitHub Pages.</p>
+
     </div>
+
   </div>
+
 </div>
 
+
+
 <script src="js/charts.js"></script>
+
 </body>
+
 </html>
+
