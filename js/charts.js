@@ -99,7 +99,6 @@ vegaEmbed('#malaysia_map', {
         ]
       }
     }
-    }
   ]
 }, embedOpts);
 
