@@ -109,7 +109,7 @@ vegaEmbed('#australia_map', {
             "subtitle": "Colour = billionaires per state  ·  Hover for details  ·  Source: Forbes 2025"},
   "width": 860, "height": 480,
   "view": {"fill": "#c8e4f0", "stroke": null},
-  "projection": {"type": "mercator", "center": [134, -25], "scale": 580},
+  "projection": {"type": "mercator", "center": [134.5, -24.5], "scale": 540},
   "layer": [
     {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}},
     {"data": {"url": "data/australia_states.topojson", "format": {"type": "topojson", "feature": "states"}},
