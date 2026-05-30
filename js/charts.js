@@ -98,21 +98,7 @@ vegaEmbed('#malaysia_map', {
           {"field": "properties.billionaires", "title": "Billionaires"}
         ]
       }
-    },
-    {
-      "data": {"values": [
-        {"label": "Kuala Lumpur", "lat": 3.17,  "lon": 101.69},
-        {"label": "Penang",       "lat": 5.46,  "lon": 100.33},
-        {"label": "Johor Bahru",  "lat": 1.54,  "lon": 103.75},
-        {"label": "Kota Kinabalu","lat": 5.98,  "lon": 116.08},
-        {"label": "Kuching",      "lat": 1.56,  "lon": 110.34}
-      ]},
-      "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#333", "dy": -8},
-      "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude":  {"field": "lat", "type": "quantitative"},
-        "text":      {"field": "label", "type": "nominal"}
-      }
+    }
     }
   ]
 }, embedOpts);
@@ -122,44 +108,19 @@ vegaEmbed('#australia_map', {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "Australian Billionaires by State",
             "subtitle": "Colour = billionaires per state  ·  Hover for details  ·  Source: Forbes 2025"},
-  "width": "container", "height": 480,
-  "autosize": {"type": "fit", "contains": "padding"},
-  "config": {"view": {"continuousWidth": 860, "continuousHeight": 480}},
+  "width": 860, "height": 480,
   "view": {"fill": "#c8e4f0", "stroke": null},
-  "projection": {"type": "mercator", "center": [134, -28], "scale": 680},
+  "projection": {"type": "mercator", "center": [134, -32], "scale": 580},
   "layer": [
     {"data": {"sphere": {}}, "mark": {"type": "geoshape", "fill": "#c8e4f0", "stroke": null}},
-    {
-      "data": {"url": "data/australia_states.topojson", "format": {"type": "topojson", "feature": "states"}},
-      "mark": {"type": "geoshape", "stroke": "#888", "strokeWidth": 0.8},
-      "encoding": {
-        "color": {
-          "field": "properties.billionaires", "type": "quantitative", "title": "Billionaires",
-          "scale": {"domain": [0,15], "range": ["#f7fcf5","#c7e9c0","#74c476","#238b45","#00441b"]},
-          "legend": {"orient": "bottom-left", "title": "Billionaires per State", "gradientLength": 120}
-        },
-        "tooltip": [
-          {"field": "properties.STATE_NAME", "title": "State"},
-          {"field": "properties.billionaires", "title": "Billionaires"}
-        ]
-      }
-    },
-    {
-      "data": {"values": [
-        {"label": "Perth",    "lat": -31.95, "lon": 115.86},
-        {"label": "Sydney",   "lat": -33.60, "lon": 151.21},
-        {"label": "Melbourne","lat": -37.60, "lon": 144.96},
-        {"label": "Brisbane", "lat": -27.30, "lon": 153.02},
-        {"label": "Adelaide", "lat": -34.70, "lon": 138.60},
-        {"label": "Darwin",   "lat": -12.20, "lon": 130.84}
-      ]},
-      "mark": {"type": "text", "fontSize": 10, "fontWeight": 600, "color": "#333", "dy": -8},
-      "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude":  {"field": "lat", "type": "quantitative"},
-        "text":      {"field": "label", "type": "nominal"}
-      }
-    }
+    {"data": {"url": "data/australia_states.topojson", "format": {"type": "topojson", "feature": "states"}},
+     "mark": {"type": "geoshape", "stroke": "#888", "strokeWidth": 0.8},
+     "encoding": {
+       "color": {"field": "properties.billionaires", "type": "quantitative", "title": "Billionaires",
+                 "scale": {"domain": [0,15], "range": ["#f7fcf5","#c7e9c0","#74c476","#238b45","#00441b"]},
+                 "legend": {"orient": "bottom-left", "title": "Billionaires per State", "gradientLength": 120}},
+       "tooltip": [{"field": "properties.STATE_NAME", "title": "State"}, {"field": "properties.billionaires", "title": "Billionaires"}]
+     }}
   ]
 }, embedOpts);
 
