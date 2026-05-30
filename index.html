@@ -286,7 +286,7 @@
     </div>
   </div>
 
-  <!-- ── S05: National Factors ── -->
+ <!-- ── S05: National Factors ── -->
 <div class="section">
   <div class="section-label">Section 05 · National Factors</div>
   <h2>Does National Wealth Matter?</h2>
@@ -300,16 +300,17 @@
     <div class="pure-u-2-3">
       <div class="card">
         <div class="chart-container">
-          <!-- WRAPPER START: Handles the absolute positioning of the card overlay -->
-          <div class="chart-wrapper" style="position: relative; display: inline-block; width: 100%;">
+          
+          <!-- FIXED WRAPPER: Changed display from inline-block to block with 100% width so Vega-Lite can read the container size -->
+          <div class="chart-wrapper" style="position: relative; display: block; width: 100%;">
             
-            <div id="bubble_chart"></div>
+            <div id="bubble_chart" style="width: 100%;"></div>
             
             <!-- THE IN-CHART STORYTELLING CARD -->
             <div class="diagram-card" style="
               position: absolute; 
-              top: 22%; 
-              left: 15%; 
+              top: 18%; 
+              left: 12%; 
               background-color: #f4f0ea; 
               border-radius: 8px; 
               padding: 12px; 
@@ -326,7 +327,7 @@
             </div>
 
           </div>
-          <!-- WRAPPER END -->
+          
         </div>
       </div>
     </div>
